@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Window;
 
 /**
  * Displays a splash image for 3 sec and then takes you to the main activity.
@@ -14,6 +15,7 @@ public class SplashActivity extends Activity{
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.splash);
 
         new Handler().postDelayed(new Runnable() {
