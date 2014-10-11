@@ -6,10 +6,12 @@ import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.Toast;
+
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
+
 import is.ru.Carpoolr.service.RideListAdapter;
 
 public class MainActivity extends ListActivity {
@@ -22,6 +24,7 @@ public class MainActivity extends ListActivity {
     /**
      * Called when the activity is first created.
      */
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,5 +78,6 @@ public class MainActivity extends ListActivity {
         super.onStop();
         firebase.getRoot().child(".info/connected").removeEventListener(connectedListener);
         rideListAdapter.cleanup();
+
     }
 }

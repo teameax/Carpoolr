@@ -11,6 +11,5 @@
               android:layout_above="@+id/listFooter"
               android:transcriptMode="alwaysScroll"
             />
-
 </LinearLayout>
 
