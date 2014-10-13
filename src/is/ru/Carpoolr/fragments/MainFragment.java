@@ -18,9 +18,15 @@ import is.ru.Carpoolr.R;
  */
 public class MainFragment extends Fragment implements View.OnClickListener{
     private String list_type = null;
-    private RideListFragment rideListFragment;
-    FragmentManager fm;
+    protected RideListFragment rideListFragment;
 
+    /**
+     * Inflate the main_fragment when the main view is created.
+     * @param inflater TODO: DOCUMENT THIS
+     * @param container TODO: DOCUMENT THIS
+     * @param savedInstanceState TODO: DOCUMENT THIS
+     * @return The main view with the main_fragment running.
+     */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.main_fragment, container, false);
@@ -29,11 +35,12 @@ public class MainFragment extends Fragment implements View.OnClickListener{
         return view;
     }
 
+    /**
+     * Start the rideListFragment when user clicks the <INSERT_BUTTON_NAME> button.
+     * @param v The view the button belongs to.
+     */
     @Override
     public void onClick(View v) {
-        //RideListFragment mainFragment = (RideListFragment)fm.findFragmentById(R.id.ridelist_fragment);
-
-        Log.d("penis", "yolo");
         Bundle bundle = new Bundle();
         bundle.putString("filter", list_type);
 
