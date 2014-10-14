@@ -12,7 +12,7 @@ import is.ru.Carpoolr.fragments.RideListFragment;
 
 public class MainActivity extends Activity {
     private FragmentManager fragmentManager = getFragmentManager();
-    private FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+    private FragmentTransaction fragmentTransaction;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -20,6 +20,8 @@ public class MainActivity extends Activity {
         setContentView(R.layout.main);
 
         // Add the main fragment to the fragment container and start it.
+
+        fragmentTransaction = fragmentManager.beginTransaction();
         MainFragment mainFragment = new MainFragment();
         fragmentTransaction.add(R.id.fragment_container, mainFragment);
         fragmentTransaction.commit();
