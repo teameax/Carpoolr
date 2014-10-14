@@ -51,6 +51,7 @@ public class MainFragment extends Fragment implements View.OnClickListener{
         rideListFragment = new RideListFragment();
         rideListFragment.setArguments(bundle);
         fragmentTransaction.replace(R.id.fragment_container, rideListFragment);
+        fragmentTransaction.addToBackStack(rideListFragment.getClass().getName());
         fragmentTransaction.commit();
     }
 }
