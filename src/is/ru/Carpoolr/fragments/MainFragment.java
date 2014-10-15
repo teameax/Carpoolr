@@ -1,5 +1,6 @@
 package is.ru.Carpoolr.fragments;
 
+import android.app.ActionBar;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
@@ -10,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import is.ru.Carpoolr.MainActivity;
 import is.ru.Carpoolr.R;
 
@@ -19,6 +22,7 @@ import is.ru.Carpoolr.R;
 public class MainFragment extends Fragment implements View.OnClickListener{
     private String list_type = null;
     protected RideListFragment rideListFragment;
+    private LayoutInflater inflate;
 
     /**
      * Inflate the main_fragment when the main view is created.
@@ -47,11 +51,12 @@ public class MainFragment extends Fragment implements View.OnClickListener{
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 
-
         rideListFragment = new RideListFragment();
         rideListFragment.setArguments(bundle);
         fragmentTransaction.replace(R.id.fragment_container, rideListFragment);
         fragmentTransaction.addToBackStack(rideListFragment.getClass().getName());
         fragmentTransaction.commit();
     }
+
+
 }

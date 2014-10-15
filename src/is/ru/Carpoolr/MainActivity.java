@@ -33,18 +33,15 @@ public class MainActivity extends Activity {
             actionBar.setDisplayShowTitleEnabled(false);
             LayoutInflater inflater = LayoutInflater.from(this);
             View customView         = inflater.inflate(R.layout.custom_actionbar, null);
-            TextView place          = (TextView)customView.findViewById(R.id.header);
-            place.setText(R.string.app_name);
+            TextView header         = (TextView)customView.findViewById(R.id.header);
+            header.setText(R.string.app_name);
             ImageButton backButton  = (ImageButton) customView.findViewById(R.id.back_button);
             backButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    // Back button functionality.
                     if(fragmentManager.getBackStackEntryCount() > 0){
-                        boolean done = getFragmentManager().popBackStackImmediate();
-                        getFragmentManager().executePendingTransactions();
-                    }else{
-                        Toast.makeText(getApplicationContext(), "Refresh Clicked!",
-                                Toast.LENGTH_LONG).show();
+                        getFragmentManager().popBackStackImmediate();
                     }
                 }
             });
@@ -54,10 +51,9 @@ public class MainActivity extends Activity {
         }
 
         // Add the main fragment to the fragment container and start it.
-        fragmentTransaction = fragmentManager.beginTransaction();
         MainFragment mainFragment = new MainFragment();
+        fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.fragment_container, mainFragment);
-        fragmentTransaction.addToBackStack(mainFragment.getClass().getName());
         fragmentTransaction.commit();
     }
 
