@@ -32,6 +32,7 @@ public class MainActivity extends Activity {
         rideListFragment = new RideListFragment();
         rideListFragment.setArguments(bundle);
         fragmentTransaction.add(R.id.fragment_container, rideListFragment);
+        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
 

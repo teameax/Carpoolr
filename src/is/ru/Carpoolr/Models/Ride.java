@@ -1,14 +1,15 @@
 package is.ru.Carpoolr.models;
 
-import java.util.Date;
+import java.io.Serializable;
+import java.util.Calendar;
 
 /**
  * Created by DrepAri on 11.10.14.
  */
-public class Ride {
+public class Ride implements Serializable{
 
     //region Member Variables
-    protected Date date;
+    protected Calendar date;
     protected String demands;
     protected String start;
     protected String note;
@@ -21,7 +22,7 @@ public class Ride {
     //region Constructors
     public Ride() { }
 
-    public Ride(Date date, String demands, String start, String note, int seats, String destination, String type, User user) {
+    public Ride(Calendar date, String demands, String start, String note, int seats, String destination, String type, User user) {
         this.date = date;
         this.demands = demands;
         this.start = start;
@@ -35,11 +36,11 @@ public class Ride {
 
     //region Getters and Setters
 
-    public Date getDate() {
+    public Calendar getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(Calendar date) {
         this.date = date;
     }
 

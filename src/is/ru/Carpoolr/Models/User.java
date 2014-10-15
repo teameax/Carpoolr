@@ -1,9 +1,11 @@
 package is.ru.Carpoolr.models;
 
+import java.io.Serializable;
+
 /**
  * Created by DrepAri on 11.10.14.
  */
-public class User {
+public class User implements Serializable {
 
     //region Member Variables
     protected String email;

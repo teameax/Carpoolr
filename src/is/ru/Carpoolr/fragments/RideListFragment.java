@@ -1,5 +1,7 @@
 package is.ru.Carpoolr.fragments;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.app.ListFragment;
 import android.database.DataSetObserver;
 import android.os.Bundle;
@@ -15,6 +17,7 @@ import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
 import is.ru.Carpoolr.R;
+import is.ru.Carpoolr.models.Ride;
 import is.ru.Carpoolr.service.RideListAdapter;
 
 /**
@@ -86,6 +89,27 @@ public class RideListFragment extends ListFragment {
         super.onStop();
         firebase.getRoot().child(".info/connected").removeEventListener(connectedListener);
         rideListAdapter.cleanup();
+
+    }
+
+    @Override
+    public void onListItemClick(ListView l, View v, int position, long id) {
+        super.onListItemClick(l, v, position, id);
+
+        Ride ride = (Ride) rideListAdapter.getItem(position);
+
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("rideInfo", ride);
+
+        FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+        RideInfoFragment rideInfoFragment = new RideInfoFragment();
+        rideInfoFragment.setArguments(bundle);
+        fragmentTransaction.replace(R.id.fragment_container, rideInfoFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
+
 
     }
 }
