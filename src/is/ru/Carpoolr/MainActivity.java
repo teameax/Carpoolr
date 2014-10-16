@@ -56,7 +56,7 @@ public class MainActivity extends Activity {
 
         // Navigation menu setup.
         frameLayout = (FrameLayout)findViewById(R.id.fragment_container);
-        mMenuListItems = getResources().getStringArray(R.array.nav_drawer_icons);
+        mMenuListItems = getResources().getStringArray(R.array.nav_drawer_items);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
@@ -117,12 +117,13 @@ public class MainActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-
     // Called whenever we call invalidateOptionsMenu()
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
+        // Access menu.xml
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
+
         // If the nav drawer is open, hide action items related to the content view
         boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
         menu.findItem(R.id.action_websearch).setVisible(!drawerOpen);

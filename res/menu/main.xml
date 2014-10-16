@@ -14,11 +14,10 @@
   limitations under the License.
   -->
 
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-      xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:id="@+id/action_websearch"
-          android:icon="@drawable/back"
+          android:icon="@drawable/plus_icon"
           android:title="@string/action_websearch"
           android:showAsAction="ifRoom|withText"
-          android:actionViewClass="android.widget.SearchView"/>
+          />
 </menu>
