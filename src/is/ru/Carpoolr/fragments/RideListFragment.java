@@ -1,8 +1,5 @@
 package is.ru.Carpoolr.fragments;
 
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
-import android.app.ListFragment;
 import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.Toast;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
@@ -23,14 +22,12 @@ import is.ru.Carpoolr.service.RideListAdapter;
 /**
  * Created by DrepAri on 11.10.14.
  */
-public class RideListFragment extends ListFragment {
+public class RideListFragment extends android.support.v4.app.ListFragment {
 
     private static final String FIREBASE_URL = "https://carpoolreax.firebaseio.com/";
     private Firebase firebase;
     private ValueEventListener connectedListener;
     private RideListAdapter rideListAdapter;
-
-    private String type_filter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -44,24 +41,26 @@ public class RideListFragment extends ListFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        type_filter = getArguments().getString("filter");
         return inflater.inflate(R.layout.ridelist_fragment, container, false);
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
+    public void onActivityCreated(Bundle onInstanceState) {
+        super.onActivityCreated(onInstanceState);
 
-        final ListView listView = getListView();
+        //final ListView listView = getListView();
 
-        rideListAdapter = new RideListAdapter(firebase.limit(10), getActivity(), R.layout.ride_record, type_filter);
-        listView.setAdapter(rideListAdapter);
+        rideListAdapter = new RideListAdapter(firebase.limit(10), getActivity(), R.layout.ride_record);
+        System.out.println(rideListAdapter.getCount());
+        //listView.setAdapter(rideListAdapter);
+        setListAdapter(rideListAdapter);
 
         rideListAdapter.registerDataSetObserver(new DataSetObserver() {
             @Override
             public void onChanged() {
                 super.onChanged();
-                listView.setSelection(rideListAdapter.getCount() - 1);
+                System.out.println(rideListAdapter.getCount());
+                getListView().setSelection(rideListAdapter.getCount() - 1);
             }
         });
 
@@ -81,6 +80,7 @@ public class RideListFragment extends ListFragment {
                 // No-op
             }
         });
+
 
     }
 
@@ -106,9 +106,9 @@ public class RideListFragment extends ListFragment {
 
         RideInfoFragment rideInfoFragment = new RideInfoFragment();
         rideInfoFragment.setArguments(bundle);
-        fragmentTransaction.replace(R.id.fragment_container, rideInfoFragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
+        //fragmentTransaction.replace(R.id.fragment_container, rideInfoFragment);
+        //fragmentTransaction.addToBackStack(null);
+        //fragmentTransaction.commit();
 
 
     }

@@ -1,39 +1,37 @@
 package is.ru.Carpoolr;
 
 import android.app.ActionBar;
-import android.app.Activity;
-import android.app.FragmentManager;
+
 import android.app.FragmentTransaction;
-import android.content.Intent;
-import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.*;
-import is.ru.Carpoolr.fragments.MainFragment;
+import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.TextView;
 import is.ru.Carpoolr.fragments.RideListFragment;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends FragmentActivity {
 
-    private String list_type = null;
-    private FragmentManager fragmentManager = getFragmentManager();
-    private FragmentTransaction fragmentTransaction;
+
     private ActionBar actionBar;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
+        setContentView(R.layout.activity_main);
 
         // Customizing the action bar.
         actionBar = getActionBar();
         if (actionBar != null) {
             actionBar.setDisplayShowHomeEnabled(false);
             actionBar.setDisplayShowTitleEnabled(false);
+            actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
             LayoutInflater inflater = LayoutInflater.from(this);
             View customView         = inflater.inflate(R.layout.custom_actionbar, null);
             TextView header         = (TextView)customView.findViewById(R.id.header);
@@ -43,8 +41,8 @@ public class MainActivity extends Activity {
                 @Override
                 public void onClick(View v) {
                     // Back button functionality.
-                    if(fragmentManager.getBackStackEntryCount() > 0){
-                        getFragmentManager().popBackStackImmediate();
+                    if(getSupportFragmentManager().getBackStackEntryCount() > 0){
+                        getSupportFragmentManager().popBackStackImmediate();
                     }
                 }
             });
@@ -53,27 +51,63 @@ public class MainActivity extends Activity {
             actionBar.setDisplayShowCustomEnabled(true);
         }
 
-        // Add the main fragment to the fragment container and start it.
-        MainFragment mainFragment = new MainFragment();
-        fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.fragment_container, mainFragment);
-        fragmentTransaction.commit();
+        Fragment tab1fragment = new RideListFragment();
+        Fragment tab2fragment = new DummyFragment();
+
+        actionBar.addTab(
+                actionBar.newTab()
+                        .setText("Drivers")
+                        .setTabListener(new TabsListener(tab1fragment, this))
+        );
+
+        actionBar.addTab(
+                actionBar.newTab()
+                        .setText("Passengers")
+                        .setTabListener(new TabsListener(tab2fragment, this))
+        );
+
+
+
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
+    protected class TabsListener implements ActionBar.TabListener {
 
-        Bundle bundle = new Bundle();
-        bundle.putString("filter", list_type);
+        private Fragment fragment;
+        private FragmentActivity activity;
 
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        public TabsListener(Fragment fragment, FragmentActivity ctx) {
+            this.fragment = fragment;
+            this.activity = ctx;
+        }
 
-        RideListFragment rideListFragment = new RideListFragment();
-        rideListFragment.setArguments(bundle);
-        fragmentTransaction.add(R.id.fragment_container, rideListFragment);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
+        @Override
+        public void onTabSelected(ActionBar.Tab tab, FragmentTransaction ft) {
+            android.support.v4.app.FragmentTransaction fft = activity.getSupportFragmentManager().beginTransaction();
+            fft.replace(R.id.fragment_placeholder, fragment);
+            fft.commit();
+        }
+
+        @Override
+        public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction ft) {
+
+        }
+
+        @Override
+        public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
+
+        }
     }
+
+    protected class DummyFragment extends Fragment {
+        @Override
+        public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+            super.onCreateView(inflater, container, savedInstanceState);
+
+            View view = inflater.inflate(R.layout.ride_info, container, false);
+            ((TextView) view.findViewById(R.id.email_info)).setText("HAALJLJR CLJLJKN:NPNF:KFN");
+
+            return view;
+        }
+    }
+
 }
