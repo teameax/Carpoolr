@@ -27,5 +27,9 @@
         <activity
                 android:name=".InfoActivity"
                 android:theme="@style/CarpoolrTheme"/>
+
+        <activity
+                android:name=".CreateRideActivity"
+                android:theme="@style/CarpoolrTheme"/>
     </application>
 </manifest>

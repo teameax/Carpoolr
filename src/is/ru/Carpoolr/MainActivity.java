@@ -23,7 +23,6 @@ import is.ru.Carpoolr.fragments.RideListFragment;
 import is.ru.Carpoolr.models.Passenger;
 import is.ru.Carpoolr.models.Ride;
 
-
 public class MainActivity extends FragmentActivity implements OnRideSelectListener {
 
     protected static final String INFO_TAG = "info";
@@ -202,16 +201,24 @@ public class MainActivity extends FragmentActivity implements OnRideSelectListen
         switch (item.getItemId()){
             case R.id.action_websearch:
                 startCreateRideFragment();
+
+            default:
+                // Handle your other action bar items
+                return super.onOptionsItemSelected(item);
         }
-        // Handle your other action bar items
-        return super.onOptionsItemSelected(item);
     }
 
     private void startCreateRideFragment(){
-        Fragment fragment = new CreateRideFragment();
-        android.support.v4.app.FragmentTransaction fft = getSupportFragmentManager().beginTransaction();
-        fft.replace(R.id.fragment_placeholder, fragment);
-        fft.commit();
+        if(isDualPane){
+            Fragment fragment = new CreateRideFragment();
+            android.support.v4.app.FragmentTransaction fft = getSupportFragmentManager().beginTransaction();
+            fft.replace(R.id.fragment_placeholder, fragment);
+            fft.commit();
+        }
+        else{
+            Intent intent = new Intent(this, CreateRideActivity.class);
+            startActivity(intent);
+        }
     }
 
     // Called whenever we call invalidateOptionsMenu()
