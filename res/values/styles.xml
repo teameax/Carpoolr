@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="CarpoolrTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+        <item name="android:actionBarTabStyle">@style/CarpoolrTheme.ActionBar.TabBar</item>
+        <item name="android:actionBarTabBarStyle">@style/CarpoolrTheme.ActionBar.Tab</item>
+        <item name="android:actionBarTabTextStyle">@style/CarpoolrTheme.ActionBar.Text</item>
+    </style>
+
+    <style name="CarpoolrTheme.ActionBar.TabBar" parent="android:style/Widget.Holo.Light.ActionBar.TabBar">
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/tab_bar_background</item>
+    </style>
+
+    <style name="CarpoolrTheme.ActionBar.Tab" parent="android:style/Widget.Holo.Light.ActionBar.TabBar">
+        <item name="android:background">@color/green_base</item>
+    </style>
+
+    <style name="CarpoolrTheme.ActionBar.Text" parent="android:style/Widget.Holo.Light.ActionBar.TabText">
+        <item name="android:textAppearance">@android:style/TextAppearance.Medium</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+</resources>

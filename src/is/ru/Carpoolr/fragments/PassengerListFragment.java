@@ -6,25 +6,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+import android.widget.Toast;
 
+import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
 import com.firebase.client.ValueEventListener;
 
 import is.ru.Carpoolr.R;
-import is.ru.Carpoolr.models.Ride;
-import is.ru.Carpoolr.service.RideListAdapter;
+import is.ru.Carpoolr.models.Passenger;
+import is.ru.Carpoolr.service.PassengerListAdapter;
 
 /**
  * Created by DrepAri on 11.10.14.
  */
-public class RideListFragment extends android.support.v4.app.ListFragment {
+public class PassengerListFragment extends android.support.v4.app.ListFragment {
 
     private static final String FIREBASE_URL = "https://carpoolreax.firebaseio.com/";
     private Firebase firebase;
     private ValueEventListener connectedListener;
-    private RideListAdapter rideListAdapter;
+    private PassengerListAdapter passengerListAdapter;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -32,7 +33,7 @@ public class RideListFragment extends android.support.v4.app.ListFragment {
 
         Firebase.setAndroidContext(getActivity());
 
-        firebase = new Firebase(FIREBASE_URL).child("rides");
+        firebase = new Firebase(FIREBASE_URL).child("passengers");
 
     }
 
@@ -45,24 +46,23 @@ public class RideListFragment extends android.support.v4.app.ListFragment {
     public void onActivityCreated(Bundle onInstanceState) {
         super.onActivityCreated(onInstanceState);
 
-        rideListAdapter = new RideListAdapter(firebase.limit(10), getActivity(), R.layout.list_record);
-        setListAdapter(rideListAdapter);
+        passengerListAdapter = new PassengerListAdapter(firebase.limit(10), getActivity(), R.layout.list_record);
+        setListAdapter(passengerListAdapter);
 
-        rideListAdapter.registerDataSetObserver(new DataSetObserver() {
+        passengerListAdapter.registerDataSetObserver(new DataSetObserver() {
             @Override
             public void onChanged() {
                 super.onChanged();
-                getListView().setSelection(rideListAdapter.getCount() - 1);
+                getListView().setSelection(passengerListAdapter.getCount() - 1);
             }
         });
-
 
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        rideListAdapter.cleanup();
+        passengerListAdapter.cleanup();
 
     }
 
@@ -70,19 +70,13 @@ public class RideListFragment extends android.support.v4.app.ListFragment {
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
 
-        Ride ride = (Ride) rideListAdapter.getItem(position);
+        Passenger ride = (Passenger) passengerListAdapter.getItem(position);
 
         Bundle bundle = new Bundle();
         bundle.putSerializable("rideInfo", ride);
 
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
         RideInfoFragment rideInfoFragment = new RideInfoFragment();
         rideInfoFragment.setArguments(bundle);
-        //fragmentTransaction.replace(R.id.fragment_container, rideInfoFragment);
-        //fragmentTransaction.addToBackStack(null);
-        //fragmentTransaction.commit();
 
 
     }

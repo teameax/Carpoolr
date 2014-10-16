@@ -5,7 +5,9 @@
           android:versionName="1.0">
     <uses-sdk android:minSdkVersion="19"/>
     <uses-permission android:name="android.permission.INTERNET" />
-    <application android:label="@string/app_name" android:icon="@drawable/icon_carpoolr">
+    <application
+            android:label="@string/app_name"
+            android:icon="@drawable/icon_carpoolr">
         <activity android:name=".SplashActivity"
                   android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
         <intent-filter>
@@ -14,6 +16,7 @@
         </intent-filter>
         </activity>
         <activity android:name="MainActivity"
+                  android:theme="@style/CarpoolrTheme"
                   android:label="@string/app_name">
         </activity>
     </application>

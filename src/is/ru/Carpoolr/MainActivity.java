@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import is.ru.Carpoolr.fragments.PassengerListFragment;
 import is.ru.Carpoolr.fragments.RideListFragment;
 
 
@@ -52,7 +53,7 @@ public class MainActivity extends FragmentActivity {
         }
 
         Fragment tab1fragment = new RideListFragment();
-        Fragment tab2fragment = new DummyFragment();
+        Fragment tab2fragment = new PassengerListFragment();
 
         actionBar.addTab(
                 actionBar.newTab()
@@ -95,18 +96,6 @@ public class MainActivity extends FragmentActivity {
         @Override
         public void onTabReselected(ActionBar.Tab tab, FragmentTransaction ft) {
 
-        }
-    }
-
-    protected class DummyFragment extends Fragment {
-        @Override
-        public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-            super.onCreateView(inflater, container, savedInstanceState);
-
-            View view = inflater.inflate(R.layout.ride_info, container, false);
-            ((TextView) view.findViewById(R.id.email_info)).setText("HAALJLJR CLJLJKN:NPNF:KFN");
-
-            return view;
         }
     }
 
