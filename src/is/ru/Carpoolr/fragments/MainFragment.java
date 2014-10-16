@@ -34,8 +34,6 @@ public class MainFragment extends Fragment implements View.OnClickListener{
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.main_fragment, container, false);
-        Button button = (Button)view.findViewById(R.id.driver);
-        button.setOnClickListener(this);
         return view;
     }
 
