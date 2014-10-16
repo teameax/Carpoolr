@@ -1,17 +1,14 @@
 package is.ru.Carpoolr.fragments;
 
+import android.app.Activity;
 import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.Toast;
 
-import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
-import com.firebase.client.ValueEventListener;
 
 import is.ru.Carpoolr.R;
 import is.ru.Carpoolr.models.Passenger;
@@ -24,8 +21,8 @@ public class PassengerListFragment extends android.support.v4.app.ListFragment {
 
     private static final String FIREBASE_URL = "https://carpoolreax.firebaseio.com/";
     private Firebase firebase;
-    private ValueEventListener connectedListener;
     private PassengerListAdapter passengerListAdapter;
+    private OnRideSelectListener callBack;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -66,18 +63,31 @@ public class PassengerListFragment extends android.support.v4.app.ListFragment {
 
     }
 
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+
+        // This makes sure that the container activity has implemented
+        // the callback interface. If not, it throws an exception
+        try {
+            callBack = (OnRideSelectListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnRideSelectedListener");
+        }
+    }
+
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
 
-        Passenger ride = (Passenger) passengerListAdapter.getItem(position);
+        //Passenger ride = (Passenger) passengerListAdapter.getItem(position);
 
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("rideInfo", ride);
+       // Bundle bundle = new Bundle();
+        //bundle.putSerializable("rideInfo", ride);
 
-        RideInfoFragment rideInfoFragment = new RideInfoFragment();
-        rideInfoFragment.setArguments(bundle);
-
+        //RideInfoFragment rideInfoFragment = new RideInfoFragment();
+        //rideInfoFragment.setArguments(bundle);
+        callBack.onRideSelected(passengerListAdapter.getItem(position));
 
     }
 }

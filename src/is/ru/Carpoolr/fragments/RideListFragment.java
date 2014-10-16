@@ -1,5 +1,7 @@
 package is.ru.Carpoolr.fragments;
 
+
+import android.app.Activity;
 import android.database.DataSetObserver;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,7 +12,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
 import com.firebase.client.Firebase;
-import com.firebase.client.ValueEventListener;
 
 import is.ru.Carpoolr.R;
 import is.ru.Carpoolr.models.Ride;
@@ -23,8 +24,8 @@ public class RideListFragment extends android.support.v4.app.ListFragment {
 
     private static final String FIREBASE_URL = "https://carpoolreax.firebaseio.com/";
     private Firebase firebase;
-    private ValueEventListener connectedListener;
     private RideListAdapter rideListAdapter;
+    private OnRideSelectListener callBack;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -64,24 +65,23 @@ public class RideListFragment extends android.support.v4.app.ListFragment {
 
     }
 
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+
+        // This makes sure that the container activity has implemented
+        // the callback interface. If not, it throws an exception
+        try {
+            callBack = (OnRideSelectListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString()
+                    + " must implement OnRideSelectedListener");
+        }
+    }
+
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
 
-        Ride ride = (Ride) rideListAdapter.getItem(position);
-
-        Bundle bundle = new Bundle();
-        bundle.putSerializable("rideInfo", ride);
-
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-
-        RideInfoFragment rideInfoFragment = new RideInfoFragment();
-        rideInfoFragment.setArguments(bundle);
-        //fragmentTransaction.replace(R.id.fragment_container, rideInfoFragment);
-        //fragmentTransaction.addToBackStack(null);
-        //fragmentTransaction.commit();
-
-
+        callBack.onRideSelected(rideListAdapter.getItem(position));
     }
 }
