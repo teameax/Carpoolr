@@ -13,6 +13,7 @@ import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import is.ru.Carpoolr.fragments.CreateRideFragment;
 import is.ru.Carpoolr.fragments.PassengerListFragment;
 import android.support.v4.widget.DrawerLayout;
 import android.view.*;
@@ -37,7 +38,6 @@ public class MainActivity extends FragmentActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         // Customizing the action bar.
         actionBar = getActionBar();
@@ -123,12 +123,19 @@ public class MainActivity extends FragmentActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Pass the event to ActionBarDrawerToggle, if it returns true, then it has handled the app icon touch event
-        if (mDrawerToggle.onOptionsItemSelected(item)) {
-            return true;
+        switch (item.getItemId()){
+            case R.id.action_websearch:
+                startCreateRideFragment();
         }
         // Handle your other action bar items
         return super.onOptionsItemSelected(item);
+    }
+
+    private void startCreateRideFragment(){
+        Fragment fragment = new CreateRideFragment();
+        android.support.v4.app.FragmentTransaction fft = getSupportFragmentManager().beginTransaction();
+        fft.replace(R.id.fragment_placeholder, fragment);
+        fft.commit();
     }
 
     // Called whenever we call invalidateOptionsMenu()
