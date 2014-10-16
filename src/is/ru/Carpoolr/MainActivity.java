@@ -38,8 +38,6 @@ public class MainActivity extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        LayoutInflater inflater = LayoutInflater.from(this);
-        inflater.inflate(R.layout.drawer, null);
 
         // Customizing the action bar.
         actionBar = getActionBar();
@@ -47,7 +45,7 @@ public class MainActivity extends FragmentActivity {
             actionBar.setDisplayShowHomeEnabled(false);
             actionBar.setDisplayShowTitleEnabled(false);
             actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-            //LayoutInflater inflater = LayoutInflater.from(this);
+            LayoutInflater inflater = LayoutInflater.from(this);
             View customView         = inflater.inflate(R.layout.custom_actionbar, null);
             TextView header         = (TextView)customView.findViewById(R.id.header);
             header.setText(R.string.app_name);
@@ -56,7 +54,7 @@ public class MainActivity extends FragmentActivity {
         }
 
         // Navigation menu setup.
-        frameLayout = (FrameLayout)findViewById(R.id.fragment_container);
+        frameLayout = (FrameLayout)findViewById(R.id.fragment_placeholder);
         mMenuListItems = getResources().getStringArray(R.array.nav_drawer_items);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);

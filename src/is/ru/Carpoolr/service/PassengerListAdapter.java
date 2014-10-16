@@ -31,7 +31,7 @@ public class PassengerListAdapter extends FirebaseListAdapter<Passenger> {
 
         ((TextView) view.findViewById(R.id.user)).setText(model.getUser().getUsername());
 
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");
         TextView date = (TextView) view.findViewById(R.id.date);
         Calendar dateModel = model.getDate();
         date.setText(dateFormat.format(dateModel.getTime()));
