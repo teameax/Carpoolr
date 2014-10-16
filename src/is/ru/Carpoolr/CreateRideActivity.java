@@ -4,8 +4,8 @@ import android.app.ActionBar;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.view.LayoutInflater;
-import android.view.View;
+import android.support.v4.app.NavUtils;
+import android.view.*;
 import android.widget.TextView;
 import is.ru.Carpoolr.fragments.CreateRideFragment;
 
@@ -29,6 +29,17 @@ public class CreateRideActivity extends FragmentActivity{
         ft.addToBackStack(null);
 
         ft.commit();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            // Respond to the action bar's Up/Home button
+            case android.R.id.home:
+                NavUtils.navigateUpFromSameTask(this);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void setupActionbar() {
