@@ -45,7 +45,6 @@ public class CreateRideActivity extends FragmentActivity{
 
     @Override
     public void onBackPressed() {
-        Log.d("oens", "sadasd");
         NavUtils.navigateUpFromSameTask(this);
     }
 
