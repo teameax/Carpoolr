@@ -60,6 +60,7 @@ public class MainActivity extends FragmentActivity implements OnRideSelectListen
     // Called whenever we call invalidateOptionsMenu()
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
+        menu.clear();
         // Access menu.xml
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
@@ -204,7 +205,7 @@ public class MainActivity extends FragmentActivity implements OnRideSelectListen
         switch (item.getItemId()){
             case R.id.action_websearch:
                 startCreateRideFragment();
-
+                return false;
             default:
                 // Handle your other action bar items
                 return super.onOptionsItemSelected(item);

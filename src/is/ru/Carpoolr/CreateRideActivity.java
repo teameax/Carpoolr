@@ -59,6 +59,7 @@ public class CreateRideActivity extends FragmentActivity{
             actionBar.setDisplayShowCustomEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeButtonEnabled(true);
+            actionBar.setLogo(R.drawable.ic_action_back);
 
             LayoutInflater inflater = LayoutInflater.from(this);
             View customView         = inflater.inflate(R.layout.custom_actionbar, null);

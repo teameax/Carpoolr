@@ -28,7 +28,6 @@
                 android:name=".InfoActivity"
                 android:theme="@style/CarpoolrTheme"
                 android:parentActivityName=".MainActivity"/>
-
         <activity
                 android:name=".CreateRideActivity"
                 android:theme="@style/CarpoolrTheme"
