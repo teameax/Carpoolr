@@ -47,6 +47,7 @@ public class RideListFragment extends android.support.v4.app.ListFragment {
     public void onActivityCreated(Bundle onInstanceState) {
         super.onActivityCreated(onInstanceState);
 
+        final ListView view = getListView();
         rideListAdapter = new RideListAdapter(firebase.limit(10), getActivity(), R.layout.list_record);
         setListAdapter(rideListAdapter);
 
@@ -54,7 +55,7 @@ public class RideListFragment extends android.support.v4.app.ListFragment {
             @Override
             public void onChanged() {
                 super.onChanged();
-                getListView().setSelection(rideListAdapter.getCount() - 1);
+                view.setSelection(rideListAdapter.getCount() - 1);
             }
         });
 

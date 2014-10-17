@@ -43,6 +43,7 @@ public class PassengerListFragment extends android.support.v4.app.ListFragment {
     public void onActivityCreated(Bundle onInstanceState) {
         super.onActivityCreated(onInstanceState);
 
+        final ListView view = getListView();
         passengerListAdapter = new PassengerListAdapter(firebase.limit(10), getActivity(), R.layout.list_record);
         setListAdapter(passengerListAdapter);
 
@@ -50,7 +51,7 @@ public class PassengerListFragment extends android.support.v4.app.ListFragment {
             @Override
             public void onChanged() {
                 super.onChanged();
-                getListView().setSelection(passengerListAdapter.getCount() - 1);
+                view.setSelection(passengerListAdapter.getCount() - 1);
             }
         });
 
