@@ -63,6 +63,9 @@ public class InfoFragment extends Fragment {
         Calendar dateModel = rideInfo.getDate();
         date.setText(dateFormat.format(dateModel.getTime()));
 
+        TextView demands = (TextView) view.findViewById(R.id.demands_header);
+        demands.setVisibility(View.INVISIBLE);
+
         ((TextView) view.findViewById(R.id.user_header)).setText("PASSENGER INFO");
         ((TextView) view.findViewById(R.id.email_info)).setText(rideInfo.getUser().getEmail());
         ((TextView) view.findViewById(R.id.username_info)).setText(rideInfo.getUser().getUsername());
