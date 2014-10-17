@@ -12,6 +12,7 @@ import android.support.v4.app.FragmentActivity;
 
 import android.view.LayoutInflater;
 import android.view.View;
+import is.ru.Carpoolr.fragments.CreateRideFragment;
 import is.ru.Carpoolr.fragments.InfoFragment;
 import is.ru.Carpoolr.fragments.OnRideSelectListener;
 import is.ru.Carpoolr.fragments.PassengerListFragment;
@@ -63,16 +64,6 @@ public class MainActivity extends FragmentActivity implements OnRideSelectListen
         mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Pass the event to ActionBarDrawerToggle, if it returns true, then it has handled the app icon touch event
-        if (mDrawerToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
-        // Handle your other action bar items
-        return super.onOptionsItemSelected(item);
-    }
-
     // Called whenever we call invalidateOptionsMenu()
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
@@ -111,8 +102,6 @@ public class MainActivity extends FragmentActivity implements OnRideSelectListen
                 ft.addToBackStack(null);
 
                 ft.commit();
-
-
             }
         }
         else {
@@ -206,10 +195,26 @@ public class MainActivity extends FragmentActivity implements OnRideSelectListen
         mDrawerLayout.setDrawerListener(mDrawerToggle);
     }
 
-    private void selectItem(int position){
+    private void selectItem(int position){}
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.action_websearch:
+                startCreateRideFragment();
+        }
+        // Handle your other action bar items
+        return super.onOptionsItemSelected(item);
     }
 
+    private void startCreateRideFragment(){
+        Fragment fragment = new CreateRideFragment();
+        android.support.v4.app.FragmentTransaction fft = getSupportFragmentManager().beginTransaction();
+        fft.replace(R.id.fragment_placeholder, fragment);
+        fft.commit();
+    }
+
+    // Called whenever we call invalidateOptionsMenu()
     @Override
     public void setTitle(CharSequence title) {
         mTitle = title;
