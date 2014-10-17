@@ -196,12 +196,21 @@ public class MainActivity extends FragmentActivity implements OnRideSelectListen
 
         // Set the drawer toggle as the DrawerListener
         mDrawerLayout.setDrawerListener(mDrawerToggle);
+
+        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setHomeButtonEnabled(true);
     }
 
     private void selectItem(int position){}
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle click on hamburger icon.
+        if (mDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+
+        // Handle click on add ride icon.
         switch (item.getItemId()){
             case R.id.action_websearch:
                 startCreateRideFragment();
