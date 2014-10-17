@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.NavUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
@@ -44,7 +45,13 @@ public class InfoActivity extends FragmentActivity {
         ft.commit();
     }
 
+    @Override
+    public void onBackPressed() {
+        NavUtils.navigateUpFromSameTask(this);
+    }
+
     private void setupActionbar() {
+        ColorDrawable green_base = (ColorDrawable)getResources().getDrawable(R.color.green_base);
         ActionBar actionBar = getActionBar();
 
         if (actionBar != null) {
@@ -60,7 +67,7 @@ public class InfoActivity extends FragmentActivity {
             TextView header         = (TextView)customView.findViewById(R.id.header);
             header.setText(R.string.app_name);
             actionBar.setCustomView(customView);
-            actionBar.setBackgroundDrawable(new ColorDrawable(R.color.green_base));
+            actionBar.setBackgroundDrawable(green_base);
         }
     }
 }

@@ -2,38 +2,28 @@ package is.ru.Carpoolr;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-
-import android.util.AttributeSet;
-import android.view.LayoutInflater;
-import android.view.View;
-import is.ru.Carpoolr.fragments.CreateRideFragment;
-import is.ru.Carpoolr.fragments.InfoFragment;
-import is.ru.Carpoolr.fragments.OnRideSelectListener;
-import is.ru.Carpoolr.fragments.PassengerListFragment;
+import android.support.v4.app.NavUtils;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.*;
 import android.widget.*;
-import is.ru.Carpoolr.fragments.RideListFragment;
+import is.ru.Carpoolr.fragments.*;
 import is.ru.Carpoolr.models.Passenger;
 import is.ru.Carpoolr.models.Ride;
-
-import java.util.zip.Inflater;
 
 public class MainActivity extends FragmentActivity implements OnRideSelectListener {
 
     protected static final String INFO_TAG = "info";
 
     private boolean isDualPane = false;
+    private String[] mMenuListItems;
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
@@ -117,7 +107,6 @@ public class MainActivity extends FragmentActivity implements OnRideSelectListen
             }
             startActivity(intent);
         }
-
     }
 
     private void setupActionbar() {
@@ -164,7 +153,7 @@ public class MainActivity extends FragmentActivity implements OnRideSelectListen
     private void setupNavigation() {
         // Navigation menu setup.
         frameLayout = (FrameLayout)findViewById(R.id.fragment_placeholder);
-        String[] mMenuListItems = getResources().getStringArray(R.array.nav_drawer_items);
+        mMenuListItems = getResources().getStringArray(R.array.nav_drawer_items);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
@@ -196,12 +185,13 @@ public class MainActivity extends FragmentActivity implements OnRideSelectListen
 
         // Set the drawer toggle as the DrawerListener
         mDrawerLayout.setDrawerListener(mDrawerToggle);
-
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setHomeButtonEnabled(true);
     }
 
-    private void selectItem(int position){}
+    private void selectItem(int position){
+        mDrawerList.setItemChecked(position, true);
+        setTitle(mMenuListItems[position]);
+        mDrawerLayout.closeDrawer(mDrawerList);
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

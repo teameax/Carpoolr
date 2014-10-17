@@ -5,6 +5,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.NavUtils;
+import android.util.Log;
 import android.view.*;
 import android.widget.TextView;
 import is.ru.Carpoolr.fragments.CreateRideFragment;
@@ -42,7 +43,14 @@ public class CreateRideActivity extends FragmentActivity{
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onBackPressed() {
+        Log.d("oens", "sadasd");
+        NavUtils.navigateUpFromSameTask(this);
+    }
+
     private void setupActionbar() {
+        ColorDrawable green_base = (ColorDrawable)getResources().getDrawable(R.color.green_base);
         ActionBar actionBar = getActionBar();
 
         if (actionBar != null) {
@@ -58,7 +66,7 @@ public class CreateRideActivity extends FragmentActivity{
             TextView header         = (TextView)customView.findViewById(R.id.header);
             header.setText(R.string.app_name);
             actionBar.setCustomView(customView);
-            actionBar.setBackgroundDrawable(new ColorDrawable(R.color.green_base));
+            actionBar.setBackgroundDrawable(green_base);
         }
     }
 }
