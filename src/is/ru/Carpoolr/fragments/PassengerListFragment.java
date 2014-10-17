@@ -80,13 +80,7 @@ public class PassengerListFragment extends android.support.v4.app.ListFragment {
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
 
-        //Passenger ride = (Passenger) passengerListAdapter.getItem(position);
 
-       // Bundle bundle = new Bundle();
-        //bundle.putSerializable("rideInfo", ride);
-
-        //RideInfoFragment rideInfoFragment = new RideInfoFragment();
-        //rideInfoFragment.setArguments(bundle);
         callBack.onRideSelected(passengerListAdapter.getItem(position));
 
     }

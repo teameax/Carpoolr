@@ -36,6 +36,8 @@ public class RideListFragment extends android.support.v4.app.ListFragment {
         firebase = new Firebase(FIREBASE_URL).child("rides");
     }
 
+    public RideListFragment(){}
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.list_fragment, container, false);
