@@ -1,12 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
               android:orientation="vertical"
               android:layout_width="match_parent"
-              android:layout_height="match_parent">
-    <TextView
-            android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:paddingStart="5dp"
+              android:paddingEnd="5dp"
+              android:paddingTop="5dp"
+              android:paddingBottom="5dp"
+        >
+    <LinearLayout
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="PENIS"/>
+            android:orientation="vertical"
+            android:paddingBottom="15dp">
+        <TextView
+                android:id="@+id/text_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/start"
+                android:textColor="@color/green_base"
+                android:textSize="20sp"
+                />
+        <EditText
+                android:id="@+id/start"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/start_location"
+                android:inputType="text"
+                android:textSize="30sp"
+                />
+            </LinearLayout>
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
+        <TextView
+                android:id="@+id/text_destination"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/destination"
+                android:textColor="@color/green_base"
+                android:textSize="20sp"
+                />
+
+        <EditText
+                android:id="@+id/destination"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/destination"
+                android:inputType="text"
+                android:textSize="30sp"
+                />
+    </LinearLayout>
+
+    <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <TextView
+                android:id="@+id/text_note"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/note"
+                android:textColor="@color/green_base"
+                android:textSize="20sp"
+                />
+
+        <EditText
+                android:inputType="textMultiLine"
+                android:lines="8"
+                android:minLines="6"
+                android:gravity="top|start"
+                android:maxLines="10"
+                android:layout_height="wrap_content"
+                android:layout_width="fill_parent"
+                android:scrollbars="vertical"
+                tools:ignore="LabelFor"/>
+    </LinearLayout>
 </LinearLayout>
+
