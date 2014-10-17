@@ -2,14 +2,18 @@ package is.ru.Carpoolr;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 
+import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import is.ru.Carpoolr.fragments.CreateRideFragment;
@@ -22,6 +26,8 @@ import android.widget.*;
 import is.ru.Carpoolr.fragments.RideListFragment;
 import is.ru.Carpoolr.models.Passenger;
 import is.ru.Carpoolr.models.Ride;
+
+import java.util.zip.Inflater;
 
 public class MainActivity extends FragmentActivity implements OnRideSelectListener {
 
@@ -46,8 +52,6 @@ public class MainActivity extends FragmentActivity implements OnRideSelectListen
         View view = findViewById(R.id.info_fragment);
 
         isDualPane = view != null && view.getVisibility() == View.VISIBLE;
-
-
     }
 
     @Override
@@ -118,7 +122,6 @@ public class MainActivity extends FragmentActivity implements OnRideSelectListen
 
     private void setupActionbar() {
         ActionBar actionBar = getActionBar();
-
         if (actionBar != null) {
 
             //ACTION BAR
@@ -127,13 +130,14 @@ public class MainActivity extends FragmentActivity implements OnRideSelectListen
             actionBar.setDisplayShowCustomEnabled(true);
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeButtonEnabled(true);
+            ColorDrawable green_base = (ColorDrawable)getResources().getDrawable(R.color.green_base);
 
             LayoutInflater inflater = LayoutInflater.from(this);
             View customView         = inflater.inflate(R.layout.custom_actionbar, null);
             TextView header         = (TextView)customView.findViewById(R.id.header);
             header.setText(R.string.app_name);
             actionBar.setCustomView(customView);
-            actionBar.setBackgroundDrawable(new ColorDrawable(R.color.green_base));
+            actionBar.setBackgroundDrawable(green_base);
 
             //ACTION BAR TABS
             actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
