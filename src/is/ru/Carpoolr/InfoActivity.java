@@ -65,7 +65,7 @@ public class InfoActivity extends FragmentActivity {
             LayoutInflater inflater = LayoutInflater.from(this);
             View customView         = inflater.inflate(R.layout.custom_actionbar, null);
             TextView header         = (TextView)customView.findViewById(R.id.header);
-            header.setText(R.string.app_name);
+            header.setText("Info");
             actionBar.setCustomView(customView);
             actionBar.setBackgroundDrawable(green_base);
         }

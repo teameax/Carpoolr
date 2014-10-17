@@ -140,6 +140,7 @@
                         android:layout_below="@+id/email_info"
                         android:textAllCaps="true"
                         android:layout_marginTop="40dp"
+                        android:textStyle="bold"
                         />
             </RelativeLayout>
     </ScrollView>
