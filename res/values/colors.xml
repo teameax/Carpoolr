@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="eggshell_white">#FFE6DEDC</color>
+    <color name="eggshell_white">#FFFaFaFa</color>
     <color name="cyan">#FF4fe0c0</color>
     <color name="carrot_orange">#FFe67e22</color>
     <color name="green_base">#FF50e3c2</color>
