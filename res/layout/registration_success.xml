@@ -56,4 +56,16 @@
             android:layout_marginStart="30dp"
             android:textColor="@android:color/white" />
 
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/home"
+            android:layout_below="@+id/destination"
+            android:layout_centerHorizontal="true"
+            android:textAllCaps="true"
+            android:textColor="@android:color/white"
+            android:drawableTop="@drawable/ic_cab_done_holo_light"
+            android:background="@color/transparent"
+            android:layout_marginTop="60dp"/>
+
 </RelativeLayout>
