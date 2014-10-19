@@ -4,31 +4,36 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent" >
+
     <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:orientation="horizontal">
+            android:orientation="horizontal" >
+
         <FrameLayout
                 android:id="@+id/fragment_placeholder"
                 android:layout_width="400dp"
-                android:layout_marginRight="20dp"
                 android:layout_height="fill_parent"
-                android:background="@android:color/white"/>
+                android:layout_marginRight="20dp"
+                android:background="@android:color/white" />
+
         <fragment
                 android:id="@+id/info_fragment"
                 android:layout_height="fill_parent"
-                android:name="is.ru.Carpoolr.fragments.InfoFragment"
-                android:layout_width="fill_parent"/>
+                android:layout_width="fill_parent"
+                android:name="is.ru.Carpoolr.fragments.InfoFragment" />
+
     </LinearLayout>
 
-    <ListView android:id="@+id/left_drawer"
-              android:layout_width="240dp"
-              android:layout_height="match_parent"
-              android:layout_gravity="start"
-              android:choiceMode="singleChoice"
-              android:divider="@android:color/transparent"
-              android:dividerHeight="0dp"
-              android:background="#111"/>
+    <ListView
+            android:id="@+id/left_drawer"
+            android:layout_width="240dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:choiceMode="singleChoice"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0dp"
+            android:background="#111" />
 
 </android.support.v4.widget.DrawerLayout>

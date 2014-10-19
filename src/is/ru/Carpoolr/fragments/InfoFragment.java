@@ -25,6 +25,7 @@ public class InfoFragment extends Fragment implements View.OnClickListener{
 
     private View view;
     private boolean isDualPane = false;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.ride_info, container, false);
@@ -101,7 +102,7 @@ public class InfoFragment extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View v) {
-            Intent intent = new Intent(getActivity(), RegistrationSuccessActivity.class);
-            startActivity(intent);
+        Intent intent = new Intent(getActivity(), RegistrationSuccessActivity.class);
+        startActivity(intent);
     }
 }

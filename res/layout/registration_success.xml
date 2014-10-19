@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:id="@+id/registrationSuccess"
-              android:orientation="vertical"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:weightSum="1"
-              android:background="@color/green_base">
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/registrationSuccess"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="1"
+        android:background="@color/green_base" >
 
     <TextView
             android:layout_width="wrap_content"
@@ -19,36 +20,40 @@
             android:layout_alignParentTop="true"
             android:textStyle="bold"
             android:textSize="30sp"
-            android:gravity="center"/>
+            android:gravity="center" />
+
     <TextView
             android:id="@+id/driver"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/successText"
-            android:text="DRIVER"
+            android:textAllCaps="true"
+            android:text="@string/driver"
             android:layout_marginEnd="200dp"
             android:layout_marginBottom="100dp"
             android:layout_marginStart="30dp"
             android:layout_marginTop="30dp"
-            android:textColor="@android:color/white"
-            />
+            android:textColor="@android:color/white" />
+
     <TextView
             android:id="@+id/date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@+id/driver"
             android:layout_below="@+id/successText"
-            android:text="DATE"
+            android:textAllCaps="true"
+            android:text="@string/date"
             android:layout_marginTop="30dp"
-            android:textColor="@android:color/white"
-            />
+            android:textColor="@android:color/white" />
+
     <TextView
             android:id="@+id/destination"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/driver"
-            android:text="DESTINATION"
+            android:textAllCaps="true"
+            android:text="@string/destination"
             android:layout_marginStart="30dp"
-            android:textColor="@android:color/white"
-            />
+            android:textColor="@android:color/white" />
+
 </RelativeLayout>

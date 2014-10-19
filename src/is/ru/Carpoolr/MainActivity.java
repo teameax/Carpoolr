@@ -67,7 +67,7 @@ public class MainActivity extends FragmentActivity implements OnRideSelectListen
 
         // If the nav drawer is open, hide action items related to the content view
         boolean drawerOpen = mDrawerLayout.isDrawerOpen(mDrawerList);
-        menu.findItem(R.id.action_websearch).setVisible(!drawerOpen);
+        menu.findItem(R.id.add_new_ride).setVisible(!drawerOpen);
         return super.onPrepareOptionsMenu(menu);
     }
 
@@ -137,13 +137,13 @@ public class MainActivity extends FragmentActivity implements OnRideSelectListen
 
             actionBar.addTab(
                     actionBar.newTab()
-                            .setText("Drivers")
+                            .setText(R.string.drivers)
                             .setTabListener(new TabsListener(tab1fragment, this))
             );
 
             actionBar.addTab(
                     actionBar.newTab()
-                            .setText("Passengers")
+                            .setText(R.string.passengers)
                             .setTabListener(new TabsListener(tab2fragment, this))
             );
 
@@ -203,7 +203,7 @@ public class MainActivity extends FragmentActivity implements OnRideSelectListen
 
         // Handle click on add ride icon.
         switch (item.getItemId()){
-            case R.id.action_websearch:
+            case R.id.add_new_ride:
                 startCreateRideFragment();
                 return false;
             default:

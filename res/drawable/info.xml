@@ -3,12 +3,16 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:shape="rectangle"
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        >
-    <solid android:color="@color/eggshell_white"/>
+        android:layout_width="wrap_content" >
+
+    <solid
+            android:color="@color/eggshell_white" />
+
     <!-- Here is the corner radius -->
     <corners
-            android:radius="10dp">
-    </corners>
-    <stroke android:width="0.8dip" android:color="#ccdddddd"/>
+            android:radius="10dp" />
+
+    <stroke
+            android:width="0.8dip"
+            android:color="#ccdddddd" />
 </shape>

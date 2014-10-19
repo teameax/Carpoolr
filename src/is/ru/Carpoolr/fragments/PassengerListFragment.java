@@ -3,6 +3,7 @@ package is.ru.Carpoolr.fragments;
 import android.app.Activity;
 import android.database.DataSetObserver;
 import android.os.Bundle;
+import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +18,7 @@ import is.ru.Carpoolr.service.PassengerListAdapter;
 /**
  * Created by DrepAri on 11.10.14.
  */
-public class PassengerListFragment extends android.support.v4.app.ListFragment {
+public class PassengerListFragment extends ListFragment {
 
     private static final String FIREBASE_URL = "https://carpoolreax.firebaseio.com/";
     private Firebase firebase;
@@ -72,8 +73,7 @@ public class PassengerListFragment extends android.support.v4.app.ListFragment {
         try {
             callBack = (OnRideSelectListener) activity;
         } catch (ClassCastException e) {
-            throw new ClassCastException(activity.toString()
-                    + " must implement OnRideSelectedListener");
+            throw new ClassCastException(activity.toString() + " must implement OnRideSelectedListener");
         }
     }
 
@@ -81,8 +81,6 @@ public class PassengerListFragment extends android.support.v4.app.ListFragment {
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
 
-
         callBack.onRideSelected(passengerListAdapter.getItem(position));
-
     }
 }

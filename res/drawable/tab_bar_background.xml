@@ -7,6 +7,7 @@
     <item android:state_focused="false" android:state_selected="false"
           android:state_pressed="false"
           android:drawable="@color/green_base" />
+
     <item android:state_focused="false" android:state_selected="true"
           android:state_pressed="false"
           android:drawable="@drawable/tab_bar_background_selected" />
@@ -15,6 +16,7 @@
     <item android:state_focused="true" android:state_selected="false"
           android:state_pressed="false"
           android:drawable="@color/cyan" />
+
     <item android:state_focused="true" android:state_selected="true"
           android:state_pressed="false"
           android:drawable="@color/cyan" />
