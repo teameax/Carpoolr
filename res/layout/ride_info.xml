@@ -3,6 +3,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/info_fragment"
         android:background="@drawable/info"
         android:layout_margin="20dp"
         android:padding="20dp">
@@ -132,6 +133,7 @@
                 <Button
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:id="@+id/take_ride"
                         android:text="@string/join"
                         android:background="@drawable/buttons"
                         android:layout_alignParentEnd="true"

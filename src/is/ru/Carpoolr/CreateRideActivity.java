@@ -4,6 +4,7 @@ import android.app.ActionBar;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.NavUtils;
 import android.util.Log;
 import android.view.*;
@@ -25,7 +26,7 @@ public class CreateRideActivity extends FragmentActivity{
         setupActionbar();
         CreateRideFragment newFragment = new CreateRideFragment();
 
-        android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(android.R.id.content, newFragment);
         ft.addToBackStack(null);
 

@@ -1,12 +1,17 @@
 package is.ru.Carpoolr.fragments;
 
+import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 import is.ru.Carpoolr.R;
+import is.ru.Carpoolr.RegistrationSuccessActivity;
 import is.ru.Carpoolr.models.Passenger;
 import is.ru.Carpoolr.models.Ride;
 
@@ -16,14 +21,18 @@ import java.util.Calendar;
 /**
  * Created by DrepAri on 13.10.14.
  */
-public class InfoFragment extends Fragment {
+public class InfoFragment extends Fragment implements View.OnClickListener{
 
     private View view;
-
+    private boolean isDualPane = false;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.ride_info, container, false);
+        isDualPane = view != null && view.getVisibility() == View.VISIBLE;
         Object rideInfo = getArguments().getSerializable("OBJ");
+
+        Button takeRide = (Button)view.findViewById(R.id.take_ride);
+        takeRide.setOnClickListener(this);
 
         if (rideInfo instanceof Passenger) {
             populatePassengerInfo((Passenger) rideInfo);
@@ -88,5 +97,11 @@ public class InfoFragment extends Fragment {
             populatePassengerInfo((Passenger) info);
         }
 
+    }
+
+    @Override
+    public void onClick(View v) {
+            Intent intent = new Intent(getActivity(), RegistrationSuccessActivity.class);
+            startActivity(intent);
     }
 }
