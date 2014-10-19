@@ -34,6 +34,7 @@
                 android:parentActivityName=".MainActivity" />
         <activity
                 android:name=".RegistrationSuccessActivity"
-                android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
+                android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
+                android:parentActivityName=".MainActivity" />
     </application>
 </manifest>

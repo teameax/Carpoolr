@@ -19,15 +19,16 @@ public class InfoActivity extends FragmentActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Object info = getIntent().getExtras().get("OBJ");
+        Object info                 = getIntent().getExtras().get("OBJ");
+        InfoFragment newFragment    = new InfoFragment();
+        Bundle args                 = new Bundle();
 
         if (getResources().getBoolean(R.bool.has_two_panes)) {
             finish();
         }
 
         setupActionbar();
-        InfoFragment newFragment = new InfoFragment();
-        Bundle args = new Bundle();
+
         if (info instanceof Ride) {
             Ride ride = (Ride) info;
             args.putSerializable("OBJ", ride);
@@ -40,7 +41,6 @@ public class InfoActivity extends FragmentActivity {
         android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(android.R.id.content, newFragment, MainActivity.INFO_TAG);
         ft.addToBackStack(null);
-
         ft.commit();
     }
 
@@ -49,7 +49,7 @@ public class InfoActivity extends FragmentActivity {
         NavUtils.navigateUpFromSameTask(this);
     }
 
-    private void setupActionbar() {
+    public void setupActionbar() {
         ColorDrawable green_base = (ColorDrawable)getResources().getDrawable(R.color.green_base);
         ActionBar actionBar = getActionBar();
 
