@@ -1,27 +1,38 @@
 package is.ru.Carpoolr;
 
 import android.app.ActionBar;
+import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.NavUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 import is.ru.Carpoolr.fragments.InfoFragment;
+import is.ru.Carpoolr.fragments.OnSingleRideSelectListener;
+import is.ru.Carpoolr.fragments.RegistrationSuccessFragment;
 import is.ru.Carpoolr.models.Passenger;
 import is.ru.Carpoolr.models.Ride;
 
 /**
  * Created by DrepAri on 16.10.14.
  */
-public class InfoActivity extends FragmentActivity {
+public class InfoActivity extends FragmentActivity implements OnSingleRideSelectListener{
+    private boolean isDualPane = false;
+    private View view;
+    protected static final String INFO_TAG = "info";
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.ride_info);
         Object info                 = getIntent().getExtras().get("OBJ");
         InfoFragment newFragment    = new InfoFragment();
         Bundle args                 = new Bundle();
+        view = findViewById(R.id.registration_success_fragment);
+        isDualPane = view != null && view.getVisibility() == View.VISIBLE;
 
         if (getResources().getBoolean(R.bool.has_two_panes)) {
             finish();
@@ -67,6 +78,41 @@ public class InfoActivity extends FragmentActivity {
             header.setText("Info");
             actionBar.setCustomView(customView);
             actionBar.setBackgroundDrawable(green_base);
+        }
+    }
+
+    @Override
+    public void onSingleRideSelectListener(Object info) {
+        if(isDualPane){
+            RegistrationSuccessFragment fragment = new RegistrationSuccessFragment();
+            if(fragment != null){
+                fragment.updateFragment(info);
+            } else {
+                RegistrationSuccessFragment newFragment = new RegistrationSuccessFragment();
+                Bundle args = new Bundle();
+                if(info instanceof Ride){
+                    Ride ride = (Ride) info;
+                    args.putSerializable("OBJ", ride);
+                } else{
+                    Passenger passenger = (Passenger) info;
+                    args.putSerializable("OBJ", passenger);
+                }
+                newFragment.setArguments(args);
+
+                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                ft.replace(R.id.registration_success_fragment, newFragment, INFO_TAG);
+            }
+        }
+        else{
+            Intent intent = new Intent(this, RegistrationSuccessActivity.class);
+            if(info instanceof Ride){
+                intent.putExtra("OBJ", (Ride) info);
+            }
+            else if(info instanceof Passenger){
+                intent.putExtra("OBJ", (Passenger) info);
+            }
+            startActivity(intent);
+
         }
     }
 }

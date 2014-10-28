@@ -2,7 +2,7 @@
 
 <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/registrationSuccess"
+        android:id="@+id/registration_success_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
@@ -23,7 +23,7 @@
             android:gravity="center" />
 
     <TextView
-            android:id="@+id/driver"
+            android:id="@+id/driver_header"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/successText"
@@ -36,10 +36,22 @@
             android:textColor="@android:color/white" />
 
     <TextView
+            android:id="@+id/driver_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/driver_header"
+            android:textAllCaps="true"
+            android:layout_marginEnd="200dp"
+            android:layout_marginBottom="100dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:textColor="@android:color/white" />
+
+    <TextView
             android:id="@+id/date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/driver"
+            android:layout_toEndOf="@+id/driver_header"
             android:layout_below="@+id/successText"
             android:textAllCaps="true"
             android:text="@string/date"
@@ -50,7 +62,7 @@
             android:id="@+id/destination"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/driver"
+            android:layout_below="@+id/driver_header"
             android:textAllCaps="true"
             android:text="@string/destination"
             android:layout_marginStart="30dp"

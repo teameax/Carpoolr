@@ -159,6 +159,7 @@ public class MainActivity extends FragmentActivity implements OnRideSelectListen
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
         mDrawerList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, mMenuListItems));
+        mDrawerList.requestLayout();
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
         mTitle = mDrawerTitle = getTitle();

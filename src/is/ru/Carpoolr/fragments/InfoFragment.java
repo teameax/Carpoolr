@@ -97,11 +97,12 @@ public class InfoFragment extends Fragment implements View.OnClickListener{
         else if (info instanceof Passenger) {
             populatePassengerInfo((Passenger) info);
         }
-
     }
 
     @Override
     public void onClick(View v) {
+        boolean isDual = false;
+
         Intent intent = new Intent(getActivity(), RegistrationSuccessActivity.class);
         startActivity(intent);
     }

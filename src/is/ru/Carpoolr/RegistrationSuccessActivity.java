@@ -5,7 +5,8 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.NavUtils;
 import is.ru.Carpoolr.fragments.RegistrationSuccessFragment;
-
+import is.ru.Carpoolr.models.Passenger;
+import is.ru.Carpoolr.models.Ride;
 
 
 /**
@@ -16,13 +17,11 @@ public class RegistrationSuccessActivity extends FragmentActivity{
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 
-        if(getResources().getBoolean(R.bool.has_two_panes)){
-            finish();
-        }
+        RegistrationSuccessFragment newFragment = new RegistrationSuccessFragment();
+        
 
-        RegistrationSuccessFragment registrationSuccessFragment = new RegistrationSuccessFragment();
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(android.R.id.content, registrationSuccessFragment);
+        ft.replace(android.R.id.content, newFragment, InfoActivity.INFO_TAG);
         ft.addToBackStack(null);
         ft.commit();
     }
