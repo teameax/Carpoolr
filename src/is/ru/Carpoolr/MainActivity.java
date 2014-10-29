@@ -2,6 +2,7 @@ package is.ru.Carpoolr;
 
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.drawable.ColorDrawable;
@@ -33,11 +34,18 @@ public class MainActivity extends FragmentActivity implements OnRideSelectListen
     private CharSequence mTitle;
     private FrameLayout frameLayout;
     private Firebase ref;
+    private String userEmail;
+    private TextView userSignupEmail;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_layout);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            userEmail = extras.getString("userEmail");
+        }
 
         setupActionbar();
         setupNavigation();
@@ -155,17 +163,23 @@ public class MainActivity extends FragmentActivity implements OnRideSelectListen
     }
 
     private void setupNavigation() {
-        // Navigation menu setup.
-        frameLayout = (FrameLayout)findViewById(R.id.fragment_placeholder);
-        mMenuListItems = getResources().getStringArray(R.array.nav_drawer_items);
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mDrawerList = (ListView) findViewById(R.id.left_drawer);
+        frameLayout     = (FrameLayout)findViewById(R.id.fragment_placeholder);
+        mMenuListItems  = getResources().getStringArray(R.array.nav_drawer_items);
+        mDrawerLayout   = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerList     = (ListView) findViewById(R.id.left_drawer);
 
         mDrawerList.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, mMenuListItems));
         mDrawerList.requestLayout();
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
-        mTitle = mDrawerTitle = getTitle();
+        // Get the header view and add it to the nav menu.
+        LayoutInflater inflater = getLayoutInflater();
+        ViewGroup header = (ViewGroup) inflater.inflate(R.layout.header, mDrawerList, false);
+        mDrawerList.addHeaderView(header);
+
+        userSignupEmail= (TextView)findViewById(R.id.userEmailHeader);
+        userSignupEmail.setText(userEmail);
+
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerToggle = new ActionBarDrawerToggle(
                 this,                  // host Activity

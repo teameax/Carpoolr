@@ -19,6 +19,7 @@ import java.util.Map;
  */
 public class SignUpActivity extends Activity {
     private Firebase ref;
+    public String userEmailAddress;
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -47,14 +48,12 @@ public class SignUpActivity extends Activity {
             @Override
             public void onAuthStateChanged(AuthData authData) {
                 if (authData != null) {
-                    Log.d("Success", "success");
+                    Log.d("Success", "User signed in");
                 } else {
-                    Log.d("Failure", "failure");
+                    Log.d("Failure", "User signed out");
                 }
             }
         });
-
-
     }
 
     private void userSignUp(){
@@ -74,8 +73,6 @@ public class SignUpActivity extends Activity {
                 Log.d("Failure", firebaseError.getMessage());
             }
         });
-
-
     }
 
     private void userLogIn(){
@@ -98,7 +95,10 @@ public class SignUpActivity extends Activity {
                 }
                 ref.child("users").child(authData.getUid()).setValue(map);
 
+                userEmailAddress = authData.getProviderData().get("email").toString();
+                Log.d("aa", userEmailAddress);
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                intent.putExtra("userEmail", userEmailAddress);
                 startActivity(intent);
             }
 
