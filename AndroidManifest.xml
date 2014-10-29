@@ -22,6 +22,9 @@
             </intent-filter>
         </activity>
         <activity
+                android:name=".SignUpActivity"
+                android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"/>
+        <activity
                 android:name="MainActivity"
                 android:theme="@style/CarpoolrTheme" />
         <activity

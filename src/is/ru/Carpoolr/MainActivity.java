@@ -14,6 +14,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.*;
 import android.widget.*;
+import com.firebase.client.AuthData;
+import com.firebase.client.Firebase;
 import is.ru.Carpoolr.fragments.*;
 import is.ru.Carpoolr.models.Passenger;
 import is.ru.Carpoolr.models.Ride;
@@ -30,6 +32,7 @@ public class MainActivity extends FragmentActivity implements OnRideSelectListen
     private CharSequence mDrawerTitle;
     private CharSequence mTitle;
     private FrameLayout frameLayout;
+    private Firebase ref;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
