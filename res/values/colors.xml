@@ -7,4 +7,5 @@
     <color name="transparent">#00000000</color>
     <color name="tab_highlight">#ff9ecfbf</color>
     <color name="tab_light_text">#ee9b9b9b</color>
+    <color name="dark_green">#FF50b3c2</color>
 </resources>

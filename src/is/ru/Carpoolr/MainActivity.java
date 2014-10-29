@@ -47,8 +47,11 @@ public class MainActivity extends FragmentActivity implements OnRideSelectListen
             userEmail = extras.getString("userEmail");
         }
 
+        LayoutInflater inflater = getLayoutInflater();
+        ViewGroup header = (ViewGroup) inflater.inflate(R.layout.header, mDrawerList, false);
+
         setupActionbar();
-        setupNavigation();
+        setupNavigation(header);
 
         View view = findViewById(R.id.info_fragment);
 
@@ -159,10 +162,9 @@ public class MainActivity extends FragmentActivity implements OnRideSelectListen
             );
 
         }
-
     }
 
-    private void setupNavigation() {
+    public void setupNavigation(ViewGroup header) {
         frameLayout     = (FrameLayout)findViewById(R.id.fragment_placeholder);
         mMenuListItems  = getResources().getStringArray(R.array.nav_drawer_items);
         mDrawerLayout   = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -173,8 +175,7 @@ public class MainActivity extends FragmentActivity implements OnRideSelectListen
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
         // Get the header view and add it to the nav menu.
-        LayoutInflater inflater = getLayoutInflater();
-        ViewGroup header = (ViewGroup) inflater.inflate(R.layout.header, mDrawerList, false);
+
         mDrawerList.addHeaderView(header);
 
         userSignupEmail= (TextView)findViewById(R.id.userEmailHeader);
