@@ -34,11 +34,10 @@ public class SignUpActivity extends Activity {
                 userSignUp();
             }
         });
-
-
     }
 
     private void userSignUp(){
+        final Button goToLogin = (Button)findViewById(R.id.goToLogin);
         EditText userNameField = (EditText)findViewById(R.id.username);
         String userName = userNameField.getText().toString();
 
@@ -49,7 +48,13 @@ public class SignUpActivity extends Activity {
             @Override
             public void onSuccess() {
                 Log.d("Success", "User successfully signed up");
-                navigateToLogin();
+                goToLogin.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        navigateToLogin();
+                    }
+                });
+                goToLogin.setText("Click here to log in");
             }
             @Override
             public void onError(FirebaseError firebaseError) {
