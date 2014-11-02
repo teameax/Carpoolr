@@ -75,10 +75,15 @@ public class LoginActivity extends Activity {
                 if(authData.getProviderData().containsKey("displayName")) {
                     map.put("displayName", authData.getProviderData().get("displayName").toString());
                 }
+                if(authData.getProviderData().containsKey("email")) {
+                    map.put("email", authData.getProviderData().get("email").toString());
+                }
+
+
                 ref.child("users").child(authData.getUid()).setValue(map);
 
                 userEmailAddress = authData.getProviderData().get("email").toString();
-                Log.d("aa", userEmailAddress);
+
                 Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 intent.putExtra("userEmail", userEmailAddress);
                 startActivity(intent);

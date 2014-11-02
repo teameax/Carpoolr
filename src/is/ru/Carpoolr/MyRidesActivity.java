@@ -10,12 +10,12 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import is.ru.Carpoolr.fragments.CreateRideFragment;
+import is.ru.Carpoolr.fragments.MyRidesFragment;
 
 /**
- * Created by joddsson on 16.10.2014.
+ * Created by DrepAri on 2.11.14.
  */
-public class CreateRideActivity extends FragmentActivity{
+public class MyRidesActivity extends FragmentActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,7 +25,7 @@ public class CreateRideActivity extends FragmentActivity{
         }
 
         setupActionbar();
-        CreateRideFragment newFragment = new CreateRideFragment();
+        MyRidesFragment newFragment = new MyRidesFragment();
 
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
         ft.replace(android.R.id.content, newFragment);
@@ -45,10 +45,6 @@ public class CreateRideActivity extends FragmentActivity{
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onBackPressed() {
-        NavUtils.navigateUpFromSameTask(this);
-    }
 
     private void setupActionbar() {
         ColorDrawable green_base = (ColorDrawable)getResources().getDrawable(R.color.green_base);
@@ -65,10 +61,9 @@ public class CreateRideActivity extends FragmentActivity{
             LayoutInflater inflater = LayoutInflater.from(this);
             View customView         = inflater.inflate(R.layout.custom_actionbar, null);
             TextView header         = (TextView)customView.findViewById(R.id.header);
-            header.setText("Create new");
+            header.setText("My rides");
             actionBar.setCustomView(customView);
             actionBar.setBackgroundDrawable(green_base);
         }
     }
-
 }

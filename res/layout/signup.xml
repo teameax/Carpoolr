@@ -37,6 +37,7 @@
             android:background="@color/eggshell_white"
             android:hint="Password"
             android:inputType="textPassword" />
+
     <Button
             android:id="@+id/signUpButton"
             android:layout_width="wrap_content"

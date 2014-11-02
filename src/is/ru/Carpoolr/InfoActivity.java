@@ -24,11 +24,13 @@ public class InfoActivity extends FragmentActivity implements OnSingleRideSelect
     private View view;
     protected static final String INFO_TAG = "info";
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ride_info);
         Object info                 = getIntent().getExtras().get("OBJ");
+        String id                   = (String) getIntent().getExtras().get("id");
         InfoFragment newFragment    = new InfoFragment();
         Bundle args                 = new Bundle();
         view = findViewById(R.id.registration_success_fragment);
@@ -47,6 +49,7 @@ public class InfoActivity extends FragmentActivity implements OnSingleRideSelect
             Passenger passenger = (Passenger) info;
             args.putSerializable("OBJ", passenger);
         }
+        args.putString("id", id);
         newFragment.setArguments(args);
 
         android.support.v4.app.FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -84,24 +87,20 @@ public class InfoActivity extends FragmentActivity implements OnSingleRideSelect
     @Override
     public void onSingleRideSelectListener(Object info) {
         if(isDualPane){
-            RegistrationSuccessFragment fragment = new RegistrationSuccessFragment();
-            if(fragment != null){
-                fragment.updateFragment(info);
-            } else {
-                RegistrationSuccessFragment newFragment = new RegistrationSuccessFragment();
-                Bundle args = new Bundle();
-                if(info instanceof Ride){
-                    Ride ride = (Ride) info;
-                    args.putSerializable("OBJ", ride);
-                } else{
-                    Passenger passenger = (Passenger) info;
-                    args.putSerializable("OBJ", passenger);
-                }
-                newFragment.setArguments(args);
-
-                FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-                ft.replace(R.id.registration_success_fragment, newFragment, INFO_TAG);
+            RegistrationSuccessFragment newFragment = new RegistrationSuccessFragment();
+            Bundle args = new Bundle();
+            if(info instanceof Ride){
+                Ride ride = (Ride) info;
+                args.putSerializable("OBJ", ride);
+            } else{
+                Passenger passenger = (Passenger) info;
+                args.putSerializable("OBJ", passenger);
             }
+            newFragment.setArguments(args);
+
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.registration_success_fragment, newFragment, INFO_TAG);
+
         }
         else{
             Intent intent = new Intent(this, RegistrationSuccessActivity.class);

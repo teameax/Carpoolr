@@ -34,6 +34,7 @@ public class RideListFragment extends android.support.v4.app.ListFragment {
         Firebase.setAndroidContext(getActivity());
 
         firebase = new Firebase(FIREBASE_URL).child("rides");
+
     }
 
     public RideListFragment(){}
@@ -55,6 +56,7 @@ public class RideListFragment extends android.support.v4.app.ListFragment {
             @Override
             public void onChanged() {
                 super.onChanged();
+                System.out.println("data has changed");
                 view.setSelection(rideListAdapter.getCount() - 1);
             }
         });
@@ -84,7 +86,6 @@ public class RideListFragment extends android.support.v4.app.ListFragment {
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
-
-        callBack.onRideSelected(rideListAdapter.getItem(position));
+        callBack.onRideSelected(rideListAdapter.getItem(position), rideListAdapter.getId(position));
     }
 }

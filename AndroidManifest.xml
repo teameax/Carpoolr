@@ -43,5 +43,10 @@
                 android:name=".RegistrationSuccessActivity"
                 android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
                 android:parentActivityName=".MainActivity" />
+        <activity
+                android:name=".MyRidesActivity"
+                android:theme="@style/CarpoolrTheme"
+                android:parentActivityName=".MainActivity"/>
+
     </application>
 </manifest>

@@ -81,6 +81,6 @@ public class PassengerListFragment extends ListFragment {
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
 
-        callBack.onRideSelected(passengerListAdapter.getItem(position));
+        callBack.onRideSelected(passengerListAdapter.getItem(position), passengerListAdapter.getId(position));
     }
 }

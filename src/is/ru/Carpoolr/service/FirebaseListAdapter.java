@@ -11,10 +11,7 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.Query;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * User: greg
@@ -38,6 +35,7 @@ public abstract class FirebaseListAdapter<T> extends BaseAdapter {
     private LayoutInflater inflater;
     private List<T> models;
     private Map<String, T> modelNames;
+    private List<String> ids;
     private ChildEventListener listener;
 
 
@@ -55,6 +53,7 @@ public abstract class FirebaseListAdapter<T> extends BaseAdapter {
         this.layout = layout;
         inflater = activity.getLayoutInflater();
         models = new ArrayList<T>();
+        ids = new ArrayList<String>();
         modelNames = new HashMap<String, T>();
         // Look for all child events. We will then map them to our own internal ArrayList, which backs ListView
         listener = this.ref.addChildEventListener(new ChildEventListener() {
@@ -67,14 +66,17 @@ public abstract class FirebaseListAdapter<T> extends BaseAdapter {
                 // Insert into the correct location, based on previousChildName
                 if (previousChildName == null) {
                     models.add(0, model);
+                    ids.add(0, dataSnapshot.getName());
                 } else {
                     T previousModel = modelNames.get(previousChildName);
                     int previousIndex = models.indexOf(previousModel);
                     int nextIndex = previousIndex + 1;
                     if (nextIndex == models.size()) {
                         models.add(model);
+                        ids.add(dataSnapshot.getName());
                     } else {
                         models.add(nextIndex, model);
+                        ids.add(nextIndex, dataSnapshot.getName());
                     }
                 }
 
@@ -154,6 +156,9 @@ public abstract class FirebaseListAdapter<T> extends BaseAdapter {
     public Object getItem(int i) {
         return models.get(i);
     }
+
+    public String getId(int i) {return ids.get(i);}
+
 
     @Override
     public long getItemId(int i) {

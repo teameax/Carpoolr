@@ -15,13 +15,17 @@
     <string name="drawer_open">Slider Menu Opened</string>
     <string name="drawer_close">Slider Menu Closed</string>
     <string name="action_create_new">Create new</string>
-    <string name="start_location">Start location</string>
+    <string name="start_placeholder">Where are you?</string>
+    <string name="destination_placeholder">Where are you going?</string>
+    <string name="demand_placeholder">Name your price</string>
+    <string name="note_placeholder">Any extra Info?</string>
     <string name="start">Start</string>
     <string name="destination">Destination</string>
     <string name="note">Note</string>
     <string name="join">Get in the pool</string>
     <string name="location_icon">Location icon</string>
     <string name="home">Home</string>
+    <string name="type">I\'m looking for a…</string>
 
     <!-- Nav Drawer Menu Items -->
     <string-array name="nav_drawer_items">
@@ -36,4 +40,9 @@
 
     <!-- Content Description -->
     <string name="desc_list_item_icon">Item Icon</string>
+
+    <string-array name="type_array">
+        <item>Passenger</item>
+        <item>Driver</item>
+    </string-array>
 </resources>

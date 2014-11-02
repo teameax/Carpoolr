@@ -86,7 +86,7 @@ public class MainActivity extends FragmentActivity implements OnRideSelectListen
     }
 
     @Override
-    public void onRideSelected(Object info) {
+    public void onRideSelected(Object info, String id) {
 
         if (isDualPane) {
             InfoFragment fragment = (InfoFragment) getSupportFragmentManager().findFragmentByTag(INFO_TAG);
@@ -96,6 +96,7 @@ public class MainActivity extends FragmentActivity implements OnRideSelectListen
             } else {
                 InfoFragment newFragment = new InfoFragment();
                 Bundle args = new Bundle();
+                args.putString("id", id);
                 if (info instanceof Ride) {
                     Ride ride = (Ride) info;
                     args.putSerializable("OBJ", ride);
@@ -114,6 +115,7 @@ public class MainActivity extends FragmentActivity implements OnRideSelectListen
         }
         else {
             Intent intent = new Intent(this, InfoActivity.class);
+            intent.putExtra("id", id);
             if (info instanceof Ride) {
                 intent.putExtra("OBJ", (Ride) info);
             }
@@ -225,9 +227,25 @@ public class MainActivity extends FragmentActivity implements OnRideSelectListen
             case R.id.add_new_ride:
                 startCreateRideFragment();
                 return false;
+            case R.id.my_rides:
+                startMyRidesFragment();
+                return false;
             default:
                 // Handle your other action bar items
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private void startMyRidesFragment() {
+        if(isDualPane){
+            Fragment fragment = new MyRidesFragment();
+            android.support.v4.app.FragmentTransaction fft = getSupportFragmentManager().beginTransaction();
+            fft.replace(R.id.fragment_placeholder, fragment);
+            fft.commit();
+        }
+        else{
+            Intent intent = new Intent(this, MyRidesActivity.class);
+            startActivity(intent);
         }
     }
 
