@@ -101,13 +101,14 @@ public class InfoFragment extends Fragment implements View.OnClickListener{
 
     }
 
-    public void updateFragment(Object info) {
+    public void updateFragment(Object info, String ids) {
         if (info instanceof Ride) {
             populateRideInfo((Ride) info);
         }
         else if (info instanceof Passenger) {
             populatePassengerInfo((Passenger) info);
         }
+        id = ids;
     }
 
     @Override

@@ -58,7 +58,7 @@ public class LoginActivity extends Activity {
     }
 
     private void userLogIn(){
-        EditText userNameField = (EditText)findViewById(R.id.usernameLogin);
+        final EditText userNameField = (EditText)findViewById(R.id.usernameLogin);
         String userName = userNameField.getText().toString();
 
         EditText passwordField = (EditText)findViewById(R.id.passwordLogin);
@@ -92,6 +92,22 @@ public class LoginActivity extends Activity {
             @Override
             public void onAuthenticationError(FirebaseError firebaseError) {
                 Log.d("Failure: ", firebaseError.getMessage());
+
+
+                switch(firebaseError.getCode()) {
+                    case FirebaseError.INVALID_EMAIL:
+                        userNameField.setError("Email is not valid!");
+                        break;
+                    case FirebaseError.INVALID_CREDENTIALS:
+                        userNameField.setError("The credentials are invalid!");
+                        break;
+                    case FirebaseError.USER_DOES_NOT_EXIST:
+                        userNameField.setError("Invalid username");
+                        break;
+                    default:
+                        userNameField.setError("Error has occurred, please try again!");
+
+                }
             }
         });
     }

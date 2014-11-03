@@ -26,7 +26,7 @@
             android:layout_marginTop="10dp"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:textColor="@android:color/darker_gray"
+            android:textColor="@android:color/white"
             android:layout_marginBottom="10dp"/>
 
     <LinearLayout
@@ -36,6 +36,7 @@
 
 
         <Button
+                android:id="@+id/facebook_button"
                 android:layout_width="100dp"
                 android:layout_height="50dp"
                 android:text="Facebook"
@@ -64,7 +65,7 @@
             android:layout_marginTop="10dp"
             android:textStyle="bold"
             android:textSize="20sp"
-            android:textColor="@android:color/darker_gray"/>
+            android:textColor="@android:color/white"/>
     <EditText
             android:id="@+id/usernameLogin"
             android:layout_width="fill_parent"
@@ -73,6 +74,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
+            android:padding="5dp"
             android:background="@color/eggshell_white"
             android:hint="Email" />
     <EditText
@@ -84,6 +86,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:background="@color/eggshell_white"
+            android:padding="5dp"
             android:hint="Password"
             android:inputType="textPassword" />
     <Button
@@ -105,7 +108,7 @@
             android:text="sign up"
             android:layout_gravity="center"
             android:textAllCaps="true"
-            android:textColor="@android:color/darker_gray"
+            android:textColor="@android:color/white"
             android:textStyle="bold"
             android:background="@color/transparent"
             android:layout_marginTop="80dp"

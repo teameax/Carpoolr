@@ -92,7 +92,7 @@ public class MainActivity extends FragmentActivity implements OnRideSelectListen
             InfoFragment fragment = (InfoFragment) getSupportFragmentManager().findFragmentByTag(INFO_TAG);
 
             if (fragment != null) {
-                fragment.updateFragment(info);
+                fragment.updateFragment(info, id);
             } else {
                 InfoFragment newFragment = new InfoFragment();
                 Bundle args = new Bundle();
