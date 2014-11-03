@@ -1,28 +1,20 @@
 package is.ru.Carpoolr.fragments;
 
-
 import android.database.DataSetObserver;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-import com.firebase.client.*;
+import com.firebase.client.Firebase;
 import is.ru.Carpoolr.R;
-import is.ru.Carpoolr.models.Registration;
 import is.ru.Carpoolr.service.RegistrationListAdapter;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by DrepAri on 2.11.14.
  */
 public class MyRidesFragment extends ListFragment {
-
-
     private static final String FIREBASE_URL = "https://carpoolreax.firebaseio.com/";
     private Firebase firebase;
     private RegistrationListAdapter registrationListAdapter;

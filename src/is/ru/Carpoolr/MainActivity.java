@@ -253,7 +253,7 @@ public class MainActivity extends FragmentActivity implements OnRideSelectListen
         if(isDualPane){
             Fragment fragment = new CreateRideFragment();
             android.support.v4.app.FragmentTransaction fft = getSupportFragmentManager().beginTransaction();
-            fft.replace(R.id.fragment_placeholder, fragment);
+            fft.replace(R.id.info_fragment, fragment);
             fft.commit();
         }
         else{

@@ -4,8 +4,8 @@
     <color name="cyan">#FF4fe0c0</color>
     <color name="carrot_orange">#FFe67e22</color>
     <color name="green_base">#FF50e3c2</color>
-    <color name="transparent">#00000000</color>
     <color name="tab_highlight">#ff9ecfbf</color>
     <color name="tab_light_text">#ee9b9b9b</color>
     <color name="dark_green">#FF50b3c2</color>
+    <color name="transparent">#00000000</color>
 </resources>
