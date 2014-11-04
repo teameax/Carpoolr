@@ -1,20 +1,27 @@
 package is.ru.Carpoolr;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
+import com.firebase.client.AuthData;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by joddsson on 29.10.2014.
  */
 public class SignUpActivity extends Activity {
     private Firebase ref;
+    public String userEmailAddress;
     @Override
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -32,35 +39,67 @@ public class SignUpActivity extends Activity {
         });
     }
 
+    // TODO: This code is the same as in LoginActivity, that needs fixing.
     private void userSignUp(){
-        final Button goToLogin = (Button)findViewById(R.id.goToLogin);
-        EditText userNameField = (EditText)findViewById(R.id.username);
-        String userName = userNameField.getText().toString();
+        final EditText userNameField = (EditText)findViewById(R.id.username);
+        final String userName = userNameField.getText().toString();
 
-
-        EditText passwordField = (EditText)findViewById(R.id.password);
-        String password = passwordField.getText().toString();
+        final EditText passwordField = (EditText)findViewById(R.id.password);
+        final String password = passwordField.getText().toString();
 
         ref.createUser(userName, password, new Firebase.ResultHandler() {
+            // Log the user in on success.
             @Override
             public void onSuccess() {
-                Log.d("Success", "User successfully signed up");
-                goToLogin.setOnClickListener(new View.OnClickListener() {
+                ref.authWithPassword(userName, password, new Firebase.AuthResultHandler() {
                     @Override
-                    public void onClick(View v) {
-                        navigateToLogin();
+                    public void onAuthenticated(AuthData authData) {
+                        Map<String, String> map = new HashMap<String, String>();
+                        map.put("provider", authData.getProvider());
+                        if(authData.getProviderData().containsKey("id")) {
+                            map.put("provider_id", authData.getProviderData().get("id").toString());
+                        }
+                        if(authData.getProviderData().containsKey("displayName")) {
+                            map.put("displayName", authData.getProviderData().get("displayName").toString());
+                        }
+                        if(authData.getProviderData().containsKey("email")) {
+                            map.put("email", authData.getProviderData().get("email").toString());
+                        }
+
+                        ref.child("users").child(authData.getUid()).setValue(map);
+
+                        userEmailAddress = authData.getProviderData().get("email").toString();
+
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        intent.putExtra("userEmail", userEmailAddress);
+                        startActivity(intent);
+                    }
+
+                    @Override
+                    public void onAuthenticationError(FirebaseError firebaseError) {
+                        Log.d("Failure: ", firebaseError.getMessage());
+
+                        switch(firebaseError.getCode()) {
+                            case FirebaseError.INVALID_EMAIL:
+                                userNameField.setError("Email is not valid!");
+                                break;
+                            case FirebaseError.INVALID_CREDENTIALS:
+                                userNameField.setError("The credentials are invalid!");
+                                break;
+                            case FirebaseError.USER_DOES_NOT_EXIST:
+                                userNameField.setError("Invalid username");
+                                break;
+                            default:
+                                userNameField.setError("Error has occurred, please try again!");
+                        }
                     }
                 });
-                goToLogin.setText("Click here to log in");
+
             }
             @Override
             public void onError(FirebaseError firebaseError) {
                 Log.d("Failure", firebaseError.getMessage());
             }
         });
-    }
-
-    private void navigateToLogin(){
-        NavUtils.navigateUpFromSameTask(this);
     }
 }

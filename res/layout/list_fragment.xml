@@ -14,8 +14,10 @@
             android:id="@android:id/empty"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:textColor="@android:color/darker_gray"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:paddingTop="100dp"
             android:text="You have no rides." />
-
 </LinearLayout>

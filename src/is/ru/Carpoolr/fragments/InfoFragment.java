@@ -1,6 +1,10 @@
 package is.ru.Carpoolr.fragments;
 
 import android.app.FragmentTransaction;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -31,6 +35,8 @@ public class InfoFragment extends Fragment implements View.OnClickListener{
     private String id;
     private static final String FIREBASE_URL = "https://carpoolreax.firebaseio.com/";
     private Firebase firebase;
+    private NotificationManager notificationManager;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -99,6 +105,7 @@ public class InfoFragment extends Fragment implements View.OnClickListener{
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
     }
 
     public void updateFragment(Object info, String ids) {
@@ -152,7 +159,6 @@ public class InfoFragment extends Fragment implements View.OnClickListener{
         firebase.updateChildren(seats);
         firebase = new Firebase(FIREBASE_URL).child("registrations");
         firebase.push().setValue(registration, trip.getUser().getEmail());
-
 
         Intent intent = new Intent(getActivity(), RegistrationSuccessActivity.class);
         intent.putExtra("OBJ", trip);

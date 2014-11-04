@@ -89,6 +89,7 @@
             android:padding="5dp"
             android:hint="Password"
             android:inputType="textPassword" />
+
     <Button
             android:id="@+id/LoginButton"
             android:layout_width="wrap_content"
@@ -101,6 +102,7 @@
             android:layout_marginTop="10dp"
             android:background="@color/dark_green"
             />
+
     <Button
             android:id="@+id/goToSignup"
             android:layout_width="wrap_content"

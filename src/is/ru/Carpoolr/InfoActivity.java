@@ -1,6 +1,10 @@
 package is.ru.Carpoolr;
 
 import android.app.ActionBar;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -9,6 +13,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.NavUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import is.ru.Carpoolr.fragments.InfoFragment;
 import is.ru.Carpoolr.fragments.OnSingleRideSelectListener;
@@ -23,6 +28,7 @@ public class InfoActivity extends FragmentActivity implements OnSingleRideSelect
     private boolean isDualPane = false;
     private View view;
     protected static final String INFO_TAG = "info";
+    protected NotificationManager notificationManager;
 
 
     @Override

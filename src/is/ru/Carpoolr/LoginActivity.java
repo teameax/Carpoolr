@@ -20,6 +20,7 @@ import java.util.Map;
 public class LoginActivity extends Activity {
     private Firebase ref;
     public String userEmailAddress;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,12 +58,12 @@ public class LoginActivity extends Activity {
         });
     }
 
-    private void userLogIn(){
+    public void userLogIn(){
         final EditText userNameField = (EditText)findViewById(R.id.usernameLogin);
-        String userName = userNameField.getText().toString();
+        final String userName = userNameField.getText().toString();
 
-        EditText passwordField = (EditText)findViewById(R.id.passwordLogin);
-        String password = passwordField.getText().toString();
+        final EditText passwordField = (EditText)findViewById(R.id.passwordLogin);
+        final String password = passwordField.getText().toString();
 
         ref.authWithPassword(userName, password, new Firebase.AuthResultHandler(){
             @Override
@@ -93,7 +94,6 @@ public class LoginActivity extends Activity {
             public void onAuthenticationError(FirebaseError firebaseError) {
                 Log.d("Failure: ", firebaseError.getMessage());
 
-
                 switch(firebaseError.getCode()) {
                     case FirebaseError.INVALID_EMAIL:
                         userNameField.setError("Email is not valid!");
@@ -106,7 +106,6 @@ public class LoginActivity extends Activity {
                         break;
                     default:
                         userNameField.setError("Error has occurred, please try again!");
-
                 }
             }
         });
