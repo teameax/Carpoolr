@@ -189,7 +189,6 @@ public class MainActivity extends FragmentActivity implements OnRideSelectListen
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
         // Get the header view and add it to the nav menu.
-
         mDrawerList.addHeaderView(header);
 
         userSignupEmail= (TextView)findViewById(R.id.userEmailHeader);
@@ -222,8 +221,13 @@ public class MainActivity extends FragmentActivity implements OnRideSelectListen
     }
 
     private void selectItem(int position){
+        if(position == 3){
+            ref.unauth();
+            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+            startActivity(intent);
+        }
         mDrawerList.setItemChecked(position, true);
-        setTitle(mMenuListItems[position]);
+        //setTitle(mMenuListItems[position]);
         mDrawerLayout.closeDrawer(mDrawerList);
     }
 
