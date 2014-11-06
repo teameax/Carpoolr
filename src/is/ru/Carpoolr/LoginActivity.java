@@ -29,7 +29,7 @@ public class LoginActivity extends Activity {
         Firebase.setAndroidContext(this);
         ref = new Firebase("https://carpoolreax.firebaseio.com/");
 
-        Button loginButton = (Button)findViewById(R.id.LoginButton);
+        Button loginButton = (Button) findViewById(R.id.LoginButton);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,7 +58,7 @@ public class LoginActivity extends Activity {
         });
     }
 
-    public void userLogIn(){
+    public void userLogIn() {
         final EditText userNameField = (EditText)findViewById(R.id.usernameLogin);
         final String userName = userNameField.getText().toString();
 
@@ -68,20 +68,20 @@ public class LoginActivity extends Activity {
         ref.authWithPassword(userName, password, new Firebase.AuthResultHandler(){
             @Override
             public void onAuthenticated(AuthData authData) {
-                Map<String, String> map = new HashMap<String, String>();
-                map.put("provider", authData.getProvider());
-                if(authData.getProviderData().containsKey("id")) {
-                    map.put("provider_id", authData.getProviderData().get("id").toString());
-                }
-                if(authData.getProviderData().containsKey("displayName")) {
-                    map.put("displayName", authData.getProviderData().get("displayName").toString());
-                }
-                if(authData.getProviderData().containsKey("email")) {
-                    map.put("email", authData.getProviderData().get("email").toString());
-                }
+                    Map<String, String> map = new HashMap<String, String>();
+                    map.put("provider", authData.getProvider());
+                    if(authData.getProviderData().containsKey("id")) {
+                        map.put("provider_id", authData.getProviderData().get("id").toString());
+                    }
+                    if(authData.getProviderData().containsKey("displayName")) {
+                        map.put("displayName", authData.getProviderData().get("displayName").toString());
+                    }
+                    if(authData.getProviderData().containsKey("email")) {
+                        map.put("email", authData.getProviderData().get("email").toString());
+                    }
 
 
-                ref.child("users").child(authData.getUid()).setValue(map);
+                    ref.child("users").child(authData.getUid()).setValue(map);
 
                 userEmailAddress = authData.getProviderData().get("email").toString();
 

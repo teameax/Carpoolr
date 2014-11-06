@@ -24,6 +24,7 @@ import is.ru.Carpoolr.models.Ride;
 public class MainActivity extends FragmentActivity implements OnRideSelectListener {
 
     protected static final String INFO_TAG = "info";
+    protected static final String FIREBASE_URL = "https://carpoolreax.firebaseio.com/";
 
     private boolean isDualPane = false;
     private String[] mMenuListItems;
@@ -41,6 +42,17 @@ public class MainActivity extends FragmentActivity implements OnRideSelectListen
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_layout);
+
+        Firebase.setAndroidContext(this);
+        ref = new Firebase(FIREBASE_URL);
+
+        if (ref.getAuth() == null) {
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }
+        else {
+            System.out.println(ref.getAuth().getProviderData().toString());
+        }
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
