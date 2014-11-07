@@ -31,6 +31,7 @@
     <string-array name="nav_drawer_items">
         <item>User settings</item>
         <item>Terms and conditions</item>
+        <item>Log out</item>
     </string-array>
 
     <!-- If we want images for nav drawer, put them here.-->
