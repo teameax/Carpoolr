@@ -171,13 +171,14 @@ public class InfoFragment extends Fragment implements View.OnClickListener{
     }
 
     protected void sendEmail(){
-        Mail m = new Mail("ivaroddsson@gmail.com", "MalverkErEkkiHestur");
+        String userEmail = ((TextView) view.findViewById(R.id.email_info)).getText().toString();
+        Mail m = new Mail("carpoolr@gmail.com", "ivararicarpoolr");
 
-        String[] toArr = {"ivaroddsson@gmail.com"};
+        String[] toArr = {userEmail};
         m.set_to(toArr);
-        m.set_from("ivaroddsson@gmail.com");
-        m.set_subject("This is an email sent using my Mail JavaMail wrapper from an Android device.");
-        m.set_body("Email body.");
+        m.set_from("noreply@carpoolreax.firebaseapp.com");
+        m.set_subject("Someone wants to ride with you! YAY!");
+        m.set_body("Some cool text letting you know who is down to ride");
 
         try {
             // Uncomment if you want to send an attachment with the email.
