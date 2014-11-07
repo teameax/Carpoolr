@@ -8,23 +8,29 @@
               android:padding="10dp">
     <TextView
             android:id="@+id/myride_user"
+            android:textSize="14sp"
             android:layout_alignParentTop="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
     <TextView
             android:id="@+id/registration_date"
+            android:textSize="14sp"
             android:layout_alignParentEnd="true"
+            android:textColor="@color/tab_light_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     <TextView
             android:id="@+id/trip_details"
+            android:textSize="16sp"
+            android:textStyle="bold"
             android:layout_below="@+id/myride_user"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     <TextView
             android:id="@+id/seats_left"
             android:layout_below="@+id/registration_date"
+            android:textSize="12sp"
             android:layout_alignParentEnd="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>

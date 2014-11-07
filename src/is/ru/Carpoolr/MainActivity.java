@@ -56,9 +56,6 @@ public class MainActivity extends FragmentActivity implements OnRideSelectListen
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
         }
-        else {
-            System.out.println(ref.getAuth().getProviderData().toString());
-        }
 
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
