@@ -40,8 +40,10 @@ public class RegistrationListAdapter extends FirebaseListAdapter<Registration> {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Ride ride = dataSnapshot.getValue(Ride.class);
-                ((TextView) v.findViewById(R.id.seats_left)).setText("Seats left:" + String.valueOf(ride.getSeats()));
+                TextView textview = (TextView) v.findViewById(R.id.seats_left);
+                textview.setText("Seats left: " + String.valueOf(ride.getSeats()));
                 ((TextView) v.findViewById(R.id.trip_details)).setText(ride.getStart() + " - " + ride.getDestination());
+
             }
 
             @Override
@@ -63,7 +65,7 @@ public class RegistrationListAdapter extends FirebaseListAdapter<Registration> {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Passenger ride = dataSnapshot.getValue(Passenger.class);
-                ((TextView) v.findViewById(R.id.seats_left)).setText("Seats left:" + String.valueOf(ride.getSeats()));
+                ((TextView) v.findViewById(R.id.seats_left)).setText("Seats left: " + String.valueOf(ride.getSeats()));
                 ((TextView) v.findViewById(R.id.trip_details)).setText(ride.getStart() + " - " + ride.getDestination());
             }
 

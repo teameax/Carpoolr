@@ -19,5 +19,5 @@
             android:textStyle="bold"
             android:gravity="center"
             android:paddingTop="100dp"
-            android:text="You have no rides." />
+            android:text="No rides available." />
 </LinearLayout>
