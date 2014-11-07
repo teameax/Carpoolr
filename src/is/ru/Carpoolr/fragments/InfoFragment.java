@@ -6,6 +6,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -14,11 +15,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 import com.firebase.client.Firebase;
+import is.ru.Carpoolr.MainActivity;
 import is.ru.Carpoolr.R;
 import is.ru.Carpoolr.RegistrationSuccessActivity;
 import is.ru.Carpoolr.models.*;
-
+import is.ru.Carpoolr.service.Mail;
+import android.os.StrictMode;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.HashMap;
@@ -155,6 +159,7 @@ public class InfoFragment extends Fragment implements View.OnClickListener{
         Map<String, Object> seats = new HashMap<String, Object>();
         seats.put("seats", trip.getSeats());
 
+        sendEmail();
 
         firebase.updateChildren(seats);
         firebase = new Firebase(FIREBASE_URL).child("registrations");
@@ -163,5 +168,29 @@ public class InfoFragment extends Fragment implements View.OnClickListener{
         Intent intent = new Intent(getActivity(), RegistrationSuccessActivity.class);
         intent.putExtra("OBJ", trip);
         startActivity(intent);
+    }
+
+    protected void sendEmail(){
+        Mail m = new Mail("ivaroddsson@gmail.com", "MalverkErEkkiHestur");
+
+        String[] toArr = {"ivaroddsson@gmail.com"};
+        m.set_to(toArr);
+        m.set_from("ivaroddsson@gmail.com");
+        m.set_subject("This is an email sent using my Mail JavaMail wrapper from an Android device.");
+        m.set_body("Email body.");
+
+        try {
+            // Uncomment if you want to send an attachment with the email.
+            //m.addAttachment("/sdcard/filelocation");
+            if(m.send()) {
+                Log.d("success", "email success");
+            }
+            else {
+                Log.d("Fail", "email failure");
+            }
+        } catch(Exception e) {
+            //Toast.makeText(MailApp.this, "There was a problem sending the email.", Toast.LENGTH_LONG).show();
+            Log.e("MailApp", "Could not send email", e);
+        }
     }
 }
